@@ -1,0 +1,63 @@
+﻿/**/
+b  AYUDA AYUDAody {
+    width: 100vw;
+	height: 100vh;
+}
+
+.containerd-fluid{
+    width: 100vw;
+	height: 100vh;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+    background-color:rgb(102, 154, 255) ;
+}
+
+.login {
+    background-color: white; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+.registro {
+    background-color: white;
+    padding: 20px;
+    width: 50% !important;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+.registro input,
+.registro select{
+    width: 100%;
+}
+.icono-usuario {
+    width: 50px;
+    height: 50px;
+    background-color: #3498db;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px; /* Espacio para separar del formulario*/ 
+}
+
+#btlogin{
+margin-top: 20px;
+}
+
+#btnopciones{
+margin-left: 8%;
+}
+
+#registrot{
+margin:auto;  
+}
+
+#formuregistro{
+width: 100%;    
+}
