@@ -7,7 +7,7 @@ class vistasModel
     protected static function model_obtener_view($view)
     {
         $listWhite = [
-            "dashboard", "usuario", "usuario-crud", "usuario-up"
+            "dashboard", "usuario", "usuario-crud", "usuario-up", "registro-rep"
         ];
         if (in_array($view, $listWhite)) {
             if (is_file("./view/contenidos/" . $view . "-alvarez.php")) {
@@ -21,5 +21,6 @@ class vistasModel
             $contenido = "404";
         }
         return $contenido;
+
     }
 }

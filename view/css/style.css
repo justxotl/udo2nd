@@ -25,8 +25,12 @@ body {
     padding: 20px;
     width: 50% !important;
     margin: auto;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.50);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
 }
 
 .registro input,
@@ -60,4 +64,10 @@ margin:auto;
 
 #formuregistro{
 width: 100%;    
+}
+
+.registrorep{
+    overflow: hidden;
+    overflow-y: scroll;
+    height: auto;
 }
