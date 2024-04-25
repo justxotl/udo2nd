@@ -7,10 +7,13 @@
     <?php include "./view/inc/estilos.php"; ?>
     <style>
         #sidebar {
+            
+            
             width: 20%;
-            height: 100vh;
             background: #343a40;
         }
+
+
     </style>
 
 

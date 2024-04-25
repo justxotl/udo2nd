@@ -1,6 +1,6 @@
 <div id="sidebar">
-  <div class="p-3">
-    <a href="#" class="navbar-brand text-center text-light w-100"></a>
+  <div class="p-3 justify-content-md-end">
+    <button type="button" class="btn btn-danger btn-lg btnCerrar_sesion">Cerrar Sesión</button>
   </div>
   <div id="sidebar-accordion" class="accordion">
     <div class="list-group">
@@ -11,7 +11,7 @@
         <a href="<?php echo SERVERURL ?>usuario/" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action bg-dark text-light">
           Administrar Usuario
         </a>
-      <?php } ?><!-- me avisas por ws que terminaste, estoy enviando el trabajo falso al correo falso a la profesora falsa XDDD  -->
+      <?php } ?>
       <a href="<?php echo SERVERURL ?>registro-rep/" class="list-group-item list-group-item-action bg-dark text-light">
         Registrar Reposo
       </a>
