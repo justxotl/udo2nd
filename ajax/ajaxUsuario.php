@@ -2,7 +2,7 @@
 $peticionAjax = true;
 require_once "../config/aplicacion.php";
 
-if (isset($_POST['username']) || isset($_POST['borrar_id_usuario']) || isset($_POST['pass_u_up']) ) {
+if (isset($_POST['username']) || isset($_POST['borrar_ced_usuario']) || isset($_POST['pass_u_up']) ) {
 
     // Instancia al controlador 
     require_once "../controllers/usuarioControl.php";
@@ -18,7 +18,7 @@ if (isset($_POST['username']) || isset($_POST['borrar_id_usuario']) || isset($_P
     }
 
    // Eliminar usuario
-    if (isset($_POST['borrar_id_usuario'])) {
+    if (isset($_POST['borrar_ced_usuario'])) {
     echo $ins_usuario->borrarUsuarioControl();
     }
     

@@ -28,5 +28,5 @@ class reposoModel extends modeloPrincipal
         return $sql;
     }*/
 
-
+/*  id_rep, cedula_rep, duracion, patologia, cedula_doc  */
 }
