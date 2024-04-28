@@ -2,7 +2,7 @@
 $peticionAjax = true;
 require_once "../config/aplicacion.php";
 
-if (isset($_POST['cedrep']) || isset($_POST['borrar_id_usuario']) ) {
+if (isset($_POST['cedrep']) || isset($_POST['borrar_reg_rep']) ) {
 
     // Instancia al controlador     
     require_once "../controllers/reposoControl.php";
@@ -14,9 +14,9 @@ if (isset($_POST['cedrep']) || isset($_POST['borrar_id_usuario']) ) {
     }
 
    // Eliminar Reposo 
-    /*if (isset($_POST['borrar_id_usuario'])) {
-    echo $ins_usuario->borrarUsuarioControl();
-    }*/
+    if (isset($_POST['borrar_reg_rep'])) {
+    echo $ins_reposo->borrarReposoControl();
+    }
     
 } else {
     session_start(['name' => 'UDO']);

@@ -18,15 +18,14 @@ class reposoModel extends modeloPrincipal
     }
 
     //Modelo para eliminar usuarios
-    /*protected static function borrarUsuarioModel($id)
+    protected static function borrarReposoModel($id_rep)
     {
-        $sql = modeloPrincipal::conexion()->prepare("DELETE FROM user WHERE id=:ID");
+        $sql = modeloPrincipal::conexion()->prepare("DELETE FROM reposos WHERE id_rep=:ID");
 
-        $sql->bindParam(":ID", $id);
+        $sql->bindParam(":ID", $id_rep);
         $sql->execute();
 
         return $sql;
-    }*/
+    }
 
-/*  id_rep, cedula_rep, duracion, patologia, cedula_doc  */
 }

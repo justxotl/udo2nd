@@ -24,7 +24,6 @@ class usuarioModel extends modeloPrincipal
             $sql->bindParam(":Apellido", $datos['Apellido']);
             $sql->bindParam(":Telefono", $datos['Telefono']);
             $sql->execute();
-
         }
 
 
@@ -41,32 +40,28 @@ class usuarioModel extends modeloPrincipal
 
         return $sql;
 
-        /*
-        
+    }
 
-
+     // Modelo datos usuario 
+    protected static function mostrarDatosModelo($ced){
         
-        
-        
-        $sql = mainModel::conexion()->prepare("DELETE user, pers_info_user FROM user JOIN pers_info_user ON user.cedula_user = pers_info_user.cedula_user_pers WHERE user.cedula_user =:Cedula;");
-
-        $sql->bindParam(":Cedula", $cedula);
+        $sql=modeloPrincipal::conexion()->prepare("SELECT * FROM user, info_per WHERE cedula_usu=:Cedula AND cedula_pers=:Cedula ");
+        $sql->bindParam(":Cedula", $ced);
         $sql->execute();
 
         return $sql;
-
-
-        */
     }
-
     
     /*--> Modelo para actualizar usuarios <--*/
     protected static function actualizarUsuarioModel($datos)
     {
-        $sql = modeloPrincipal::conexion()->prepare("UPDATE user SET pass_u=:Clave WHERE id=:ID ");
+        $sql = modeloPrincipal::conexion()->prepare("UPDATE user INNER JOIN info_per ON user.cedula_usu = info_per.cedula_pers SET user.pass_u = :Clave, info_per.nombre_pers = :Nombres, info_per.apellido_pers = :Apellidos, info_per.tlf_pers = :Telefono WHERE user.cedula_usu = :Cedula;");
 
+        $sql->bindParam(":Cedula", $datos['Cedula']);
         $sql->bindParam(":Clave", $datos['Clave']);
-        $sql->bindParam(":ID", $datos['ID']);
+        $sql->bindParam(":Nombres", $datos['Nombres']);
+        $sql->bindParam(":Apellidos", $datos['Apellidos']);
+        $sql->bindParam(":Telefono", $datos['Telefono']);
         $sql->execute();
 
         return $sql;

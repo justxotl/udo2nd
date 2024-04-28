@@ -16,12 +16,8 @@
         Registrar Reposo
       </a>
       <?php if ($_SESSION['nivel_UDO'] == 1) { ?>
-        <a href="#setting-items" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action bg-dark text-light">
-          Reportes de Reposo
-        </a>
-
-        <a href="#setting-items" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action bg-dark text-light">
-          Gestionar Reposo
+        <a href="<?php echo SERVERURL ?>tabla-reposo/" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action bg-dark text-light">
+          Tabla de Reposos
         </a>
       <?php } ?>
 

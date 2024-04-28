@@ -6,8 +6,9 @@ class vistasModel
     //Modelo para obtener vistas 
     protected static function model_obtener_view($view)
     {
+       //
         $listWhite = [
-            "dashboard", "usuario", "usuario-crud", "usuario-up", "registro-rep"
+            "dashboard", "usuario", "usuario-crud", "usuario-up", "registro-rep", "tabla-reposo"
         ];
         if (in_array($view, $listWhite)) {
             if (is_file("./view/contenidos/" . $view . "-alvarez.php")) {

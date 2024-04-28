@@ -7,8 +7,6 @@
     <?php include "./view/inc/estilos.php"; ?>
     <style>
         #sidebar {
-            
-            
             width: 20%;
             background: #343a40;
         }
@@ -34,6 +32,7 @@
         } else {
             session_start(['name' => 'UDO']);
             $pagina = explode("/", $_GET['alvarez']);
+            //http://localhost/udo/-> $pagina = "usuario" / "30201456" 
             require_once "./controllers/loginControl.php";
             $lc = new loginControl();
             if (!isset($_SESSION['token_UDO']) || !isset($_SESSION['usuario_UDO']) || !isset($_SESSION['nivel_UDO']) || !isset($_SESSION['id_UDO'])) {
