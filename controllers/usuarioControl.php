@@ -179,8 +179,6 @@ class usuarioControl extends usuarioModel
             "Nivel" => $nivel
         ];
 
-        
-
         $agg_usu = usuarioModel::modelAgregarUsers($Inf_reg_usu);
         if ($agg_usu->rowCount() == 1) {
             $alerta = [
@@ -198,7 +196,8 @@ class usuarioControl extends usuarioModel
             ];
         }
         echo json_encode($alerta);
-    }/* Fin de del controlador */
+    }
+    /* Fin de del controlador */
 
     //Controlador para mostrar usuarios en una tabla
     public function tablaUsuarioControlador()

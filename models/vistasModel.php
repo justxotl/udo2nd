@@ -8,7 +8,7 @@ class vistasModel
     {
        //
         $listWhite = [
-            "dashboard", "usuario", "usuario-crud", "usuario-up", "registro-rep", "tabla-reposo"
+            "dashboard", "usuario", "usuario-crud", "usuario-up", "registro-rep", "tabla-reposo", "registro-doc"
         ];
         if (in_array($view, $listWhite)) {
             if (is_file("./view/contenidos/" . $view . "-alvarez.php")) {

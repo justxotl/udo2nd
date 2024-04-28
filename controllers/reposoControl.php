@@ -88,6 +88,20 @@ class reposoControl extends reposoModel
             exit();
         }
 
+        // Comprobando la existencia de la cedula del tratante
+
+        $check_ceddoc = modeloPrincipal::ejecutarConsultaSimple("SELECT cedula_doc FROM doc WHERE cedula_doc ='$ceddoc'");
+        if ($check_ceddoc->rowCount() == 0) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR ",
+                "Texto" => "El número de cédula de tratante no se encuentra registrado en el sistema.",
+                "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
         //Comprobando duración del reposo
 
         if ($duracionrep < 3 ) {
