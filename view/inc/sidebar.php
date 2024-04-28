@@ -12,8 +12,12 @@
           Administrar Usuario
         </a>
       <?php } ?>
+
       <a href="<?php echo SERVERURL ?>registro-rep/" class="list-group-item list-group-item-action bg-dark text-light">
         Registrar Reposo
+      </a>
+      <a href="<?php echo SERVERURL ?>registro-doc/" class="list-group-item list-group-item-action bg-dark text-light">
+        Registrar Tratante
       </a>
       <?php if ($_SESSION['nivel_UDO'] == 1) { ?>
         <a href="<?php echo SERVERURL ?>tabla-reposo/" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action bg-dark text-light">
@@ -21,6 +25,6 @@
         </a>
       <?php } ?>
 
-    </div> 
+    </div>
   </div>
 </div>

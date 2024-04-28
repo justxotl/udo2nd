@@ -101,6 +101,7 @@ class loginControl extends loginModel
     //Controlador para forzar cierre de sesion al sistema
     public function controlForzarCierreSesion()
     {
+        
         session_unset();
         session_destroy();
         if (headers_sent()) {

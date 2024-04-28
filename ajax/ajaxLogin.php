@@ -9,7 +9,7 @@ if (isset($_POST['token']) && isset($_POST['usuario'])) {
     $ins_login = new loginControl();
 
     echo $ins_login->controlCerrarSesion();
-} else {
+} else {     
     session_start(['name' => 'UDO']);
     session_unset();
     session_destroy();

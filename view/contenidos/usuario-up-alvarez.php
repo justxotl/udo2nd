@@ -1,10 +1,9 @@
 <?php
 
 if ($_SESSION['nivel_UDO'] != 1) {
-	echo $lc->forzar_cierre_sesion_control();
-	exit();
+    echo $lc->controlForzarCierreSesion();
+    exit();
 }
-
 ?>
 
 <?php 
@@ -13,9 +12,8 @@ if ($_SESSION['nivel_UDO'] != 1) {
 
 		$datos_usu=$ins_usu->mostrarDatosControlador($pagina[1]);
 
-
-	
 	if($datos_usu->rowCount()==1){
+
 		$campos= $datos_usu->fetch();
 
 ?>

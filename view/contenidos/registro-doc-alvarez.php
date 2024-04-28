@@ -11,12 +11,13 @@
             <input type="text" class="form-control" name="apellidos_doc" required>
         </div>
         <div class="form-group">
-            <label for="cedula_usu">Cedula:</label>
+            <label for="cedula_usu">Cédula:</label>
             <input type="text" class="form-control" name="cedula_doc" required>
         </div>
         <br>
         <center>
         <button type="submit" class="btn btn-primary" name="submit">Registrar</button>
+        <a href="<?php echo SERVERURL?>tabla-doc" class="btn btn-success">CRUD</a>
         </center>
     </form>
 </div>

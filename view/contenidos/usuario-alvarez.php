@@ -1,11 +1,11 @@
 <?php
 if ($_SESSION['nivel_UDO'] != 1) {
-    echo $lc->controlForzarCierreSesion;
+    echo $lc->controlForzarCierreSesion();
     exit();
 }
 ?>
 
-<div class=" div-registro" id="registrot" style="padding-top: 50px;">
+<div class=" div-registro mb-3" id="registrot" style="padding-top: 50px;">
     <h2 class=" text-center">Registro de Usuarios</h2>
     <form method="post" data-form="save" class="registro  FormularioAjax" id="formuregistro" action="<?php echo SERVERURL ?>ajax/ajaxUsuario.php">
     
@@ -18,7 +18,7 @@ if ($_SESSION['nivel_UDO'] != 1) {
             <input type="text" class="form-control" name="apellidos_usu" required>
         </div>
         <div class="form-group">
-            <label for="cedula_usu">Cedula:</label>
+            <label for="cedula_usu">Cédula:</label>
             <input type="text" class="form-control" name="cedula_usu" required>
         </div>
         <div class="form-group">

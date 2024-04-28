@@ -17,4 +17,14 @@ class docModel extends modeloPrincipal{
         return $sql;
     }
 
+    //Modelo para eliminar tratantes
+    protected static function borrarDocModel($id_doc)
+    {
+        $sql = modeloPrincipal::conexion()->prepare("DELETE FROM doc WHERE id_doc=:ID");
+
+        $sql->bindParam(":ID", $id_doc);
+        $sql->execute();
+
+        return $sql;
+    }
 }
