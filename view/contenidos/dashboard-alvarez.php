@@ -1,0 +1,1 @@
+<img class="fotico" src="<?php echo SERVERURL ?>view/img/pagina.jpg">

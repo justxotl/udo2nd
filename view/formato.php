@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" style="min-height: 100%">
 
 <head>
     <meta charset="UTF-8">
@@ -10,15 +10,13 @@
             width: 20%;
             background: #343a40;
         }
-
-
     </style>
 
 
 </head>
 
-<body>
-    <div class="d-flex">
+<body >
+    <div class="flex">
 
         <?php
         $peticionAjax = false;
@@ -42,7 +40,7 @@
             include "./view/inc/sidebar.php";
         ?>
 
-    <div class="content w-100">
+    <div class="content">
             <?php
             
             include "./view/inc/barraSuperior.php";

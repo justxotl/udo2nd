@@ -1,4 +1,16 @@
-﻿.containerd-fluid{
+﻿body, html{
+    width: 100vw;
+	height: 100vh;
+}
+.flex{
+    display: flex;
+}
+.content{
+    width: 100vw;
+	height: 100vh;
+}
+
+.containerd-fluid{
     width: 100vw;
 	height: 100vh;
     display: flex;
@@ -70,3 +82,9 @@ margin:auto;
     -o-border-radius: 8px;
 }
 
+.fotico{
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    width: 65%;
+}
