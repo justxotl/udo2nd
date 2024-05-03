@@ -18,7 +18,10 @@
                 <label for="medicoCedula" class="form-label">Número de Cédula del Médico Tratante</label>
                 <input type="text" class="form-control" id="medicoCedula" name="ceddoc" required>
             </div>
-            <button type="submit" class="btn btn-primary">Enviar Registro</button>
+            <center>
+                <button type="submit" class="btn btn-primary">Enviar Registro</button>
+                <a href="<?php echo SERVERURL ?>tabla-reposo/" class="btn btn-success">CRUD</a>
+            </center>
     </form>
 
 </div>

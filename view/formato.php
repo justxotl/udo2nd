@@ -12,12 +12,13 @@
         }
     </style>
 
-
 </head>
 
 <body >
-    <div class="flex">
-
+        <!--- aqui --->
+        <?php include "./view/inc/cabezera.php" ;?>
+        
+        <div class="flex">
         <?php
         $peticionAjax = false;
         require_once "./controllers/vistasControl.php";
@@ -40,14 +41,12 @@
             include "./view/inc/sidebar.php";
         ?>
 
-    <div class="content">
+        <div class="content">
             <?php
-            
-            include "./view/inc/barraSuperior.php";
-            
             include $view;
             ?>
-    </div>
+        </div>
+        
         <?php
             include "./view/inc/cerrarSesion.php";
         }
