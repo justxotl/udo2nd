@@ -5,6 +5,7 @@ if ($_SESSION['nivel_UDO'] != 1) {
 }
 ?>
 
+<div class="tabla-premium">
 <?php
 
 require_once "./controllers/docControl.php";
@@ -13,3 +14,4 @@ $insDocTab = new docControl();
 echo $insDocTab->tablaDocControl();
 
 ?>
+</div>

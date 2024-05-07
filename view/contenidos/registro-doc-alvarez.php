@@ -1,5 +1,5 @@
 <div class=" div-registro" id="registrot" style="padding-top: 50px;">
-    <h2 class=" text-center">Registro de Tratante</h2>
+    <h2 class=" text-center">Registro de Médico</h2>
     <form method="POST" data-form="save" class="registro FormularioAjax" id="formuregistro" action="<?php echo SERVERURL ?>ajax/ajaxDoc.php">
     
         <div class="form-group">

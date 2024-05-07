@@ -8,3 +8,6 @@
 
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>view/css/style.css">
 
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>datatables/datatables.css">
+
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>datatables/datatables.min.css">

@@ -215,7 +215,7 @@ class usuarioControl extends usuarioModel
         $total = (int) $total->fetchColumn();
 
         $tabla = '
-        <table class="table container">
+        <table id="example" class="table table-striped table-bordered container">
         <thead>
             <tr>
                 <th>ID</th>
@@ -245,7 +245,7 @@ class usuarioControl extends usuarioModel
                 
                 <input type="hidden" name="borrar_ced_usuario" value="'.$rows['cedula_pers'].'">
                 
-                <button type="submit" class="btn btn-danger">
+                <button type="submit" class="btn btn-sm btn-danger">
                         Borrar
                     </button>
                 </form>

@@ -1,7 +1,7 @@
 
 <div class="containerd-fluid">
-        <div class="row justify-content-center">
-            <h3 class="text-center">Aplicación para Registro de Reposos</h3>
+        <div class="row justify-content-center ingreso">
+            <h3 class="titulo-login text-center">Aplicación para Registro de Reposos</h3>
             <br>
             <br>
             <div class="col-md-6">

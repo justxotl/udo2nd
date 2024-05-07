@@ -170,7 +170,7 @@ class reposoControl extends reposoModel
         $total = (int) $total->fetchColumn();
 
         $tabla = '
-        <table class="table container">
+        <table id="example" class="table table-striped table-bordered container">
         <thead>
             <tr>
                 <th>ID</th>
@@ -197,7 +197,7 @@ class reposoControl extends reposoModel
                 
                 <input type="hidden" name="borrar_reg_rep" value="'.$rows['id_rep'].'">
                 
-                <button type="submit" class="btn btn-danger">
+                <button type="submit" class="btn btn-sm btn-danger">
                         Borrar
                     </button>
                 </form>

@@ -116,7 +116,7 @@ class docControl extends docModel
         $total = (int) $total->fetchColumn();
 
         $tabla = '
-        <table class="table container">
+        <table id="example" class="table table-striped table-bordered container">
         <thead>
             <tr>
                 <th>ID</th>
@@ -143,7 +143,7 @@ class docControl extends docModel
                 
                 <input type="hidden" name="borrar_reg_doc" value="'.$rows['id_doc'].'">
                 
-                <button type="submit" class="btn btn-danger">
+                <button type="submit" class="btn btn-sm btn-danger">
                         Borrar
                     </button>
                 </form>
