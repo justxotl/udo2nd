@@ -7,12 +7,13 @@ class reposoModel extends modeloPrincipal
     // Modelo para agregar usuarios 
     protected static function modelAgregarReposo($datos)
     {
-        $sql = modeloPrincipal::conexion()->prepare("INSERT INTO reposos ( cedula_rep, duracion, patologia, cedula_doc) VALUES(:Cedularep, :Duracion, :Patologia, :Ceduladoc)");
-
-        $sql->bindParam(":Cedularep", $datos['Cedularep']);
+        $sql = modeloPrincipal::conexion()->prepare("INSERT INTO reposos (duracion, patologia, nombre_med, apellido_med, id_user) VALUES(:Duracion, :Patologia, :Nombremed, :Apellidomed, :IDuser)");
+        
         $sql->bindParam(":Duracion", $datos['Duracion']);
         $sql->bindParam(":Patologia", $datos['Patologia']);
-        $sql->bindParam(":Ceduladoc", $datos['Ceduladoc']);
+        $sql->bindParam(":Nombremed", $datos['Nommed']);
+        $sql->bindParam(":Apellidomed", $datos['Apemed']);
+        $sql->bindParam(":IDuser", $datos['ID']);
         $sql->execute();
         return $sql;
     }

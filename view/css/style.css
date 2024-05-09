@@ -106,9 +106,8 @@ margin:auto;
 }
 
 .placeholder{
-    width:125px;
-    height: 125px;
-    opacity: 0.75;
+    width:100px;
+    height: 100px;
     margin-left: 30px;
 }
 
@@ -123,4 +122,11 @@ margin:auto;
     width: 95%;
     margin: auto;
     margin-top: 30px;;
+}
+.list-group-item{
+    background-color: rgb(12, 88, 137); 
+}
+.list-group-item:hover{
+    background-color: rgb(16, 125, 198); 
+   
 }

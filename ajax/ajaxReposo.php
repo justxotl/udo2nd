@@ -1,15 +1,15 @@
 <?php
 $peticionAjax = true;
 require_once "../config/aplicacion.php";
-
-if (isset($_POST['cedrep']) || isset($_POST['borrar_reg_rep']) ) {
+//
+if (isset($_POST['id_usuario_rep_reg']) || isset($_POST['borrar_reg_rep']) ) {
 
     // Instancia al controlador     
     require_once "../controllers/reposoControl.php";
     $ins_reposo = new reposoControl();
 
     // Agregar Reposo
-    if (isset($_POST['cedrep']) && isset($_POST['ceddoc'])) {
+    if (isset($_POST['id_usuario_rep_reg']) && isset($_POST['patologia'])) {
         echo $ins_reposo->agregarReposoControlador();
     }
 

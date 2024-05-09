@@ -56,7 +56,7 @@ class usuarioControl extends usuarioModel
             exit();
         }
         
-        if (modeloPrincipal::verificarDatos("[0-9\-]{6,20}", $cedula_usu)) {
+        if (modeloPrincipal::verificarDatos("[0-9\-]{6,8}", $cedula_usu)) {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "ERROR",

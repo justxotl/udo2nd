@@ -7,8 +7,11 @@
     <?php include "./view/inc/estilos.php"; ?>
     <style>
         #sidebar {
-            width: 20%;
-            background: #343a40;
+            width: 15%;
+            max-height: 180vh;
+
+            background-color: rgb(12, 88, 137);
+            
         }
     </style>
 

@@ -11,13 +11,14 @@ class reposoControl extends reposoModel
     //Controlador para registrar reposos
     public function agregarReposoControlador()
     {
-        $cedrep = $_POST['cedrep'];
+        $id = $_POST['id_usuario_rep_reg'];
         $duracionrep = $_POST['duracion'];
         $patologiarep = $_POST['patologia'];
-        $ceddoc = $_POST['ceddoc'];
+        $nom_med = $_POST['nombres_doc'];
+        $ape_med = $_POST['apellidos_doc'];
 
         //Comprobar los campos vacios del formulario
-        if ($cedrep == "" || $duracionrep == "" || $patologiarep == "" || $ceddoc == "") {
+        if ($id == "" || $duracionrep == "" || $patologiarep == "" || $nom_med == "" || $ape_med == "") {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "Ocurrio un error inesperado",
@@ -29,19 +30,8 @@ class reposoControl extends reposoModel
         }
 
         // verificando si los datos cumplen con el formato
-        
-        if (modeloPrincipal::verificarDatos("[0-9]{6,8}", $cedrep) ) {
-            $alerta = [
-                "Alerta" => "simple",
-                "Titulo" => "ocurrio un error inesperado",
-                "Texto" => "La Cédula no coincide con el formato solicitado",
-                "Tipo" => "error"
-            ];
-            echo json_encode($alerta);
-            exit();
-        }
 
-        if (modeloPrincipal::verificarDatos("[0-9]{1,3}", $duracionrep) ) {
+        if (modeloPrincipal::verificarDatos("[0-9]{1,2}", $duracionrep) ) {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "ocurrio un error inesperado",
@@ -63,39 +53,22 @@ class reposoControl extends reposoModel
             exit();
         }
 
-        if (modeloPrincipal::verificarDatos("[0-9]{6,8}", $ceddoc) ) {
+        if (modeloPrincipal::verificarDatos("[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,35}", $nom_med)) {
             $alerta = [
                 "Alerta" => "simple",
-                "Titulo" => "ocurrio un error inesperado",
-                "Texto" => "La Cédula del Tratante no coincide con el formato solicitado",
+                "Titulo" => "ERROR",
+                "Texto" => "El nombre no coincide con el formato solicitado.",
                 "Tipo" => "error"
             ];
             echo json_encode($alerta);
             exit();
         }
-
-        // Comprobando la existencia de la cedula del reposo
-
-        $check_cedula = modeloPrincipal::ejecutarConsultaSimple("SELECT cedula_pers FROM info_per WHERE cedula_pers ='$cedrep'");
-        if ($check_cedula->rowCount() == 0) {
+        
+        if (modeloPrincipal::verificarDatos("[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,35}", $ape_med)) {
             $alerta = [
                 "Alerta" => "simple",
-                "Titulo" => "ERROR ",
-                "Texto" => "El número de cédula no se encuentra registrado en el sistema.",
-                "Tipo" => "error"
-            ];
-            echo json_encode($alerta);
-            exit();
-        }
-
-        // Comprobando la existencia de la cedula del tratante
-
-        $check_ceddoc = modeloPrincipal::ejecutarConsultaSimple("SELECT cedula_doc FROM doc WHERE cedula_doc ='$ceddoc'");
-        if ($check_ceddoc->rowCount() == 0) {
-            $alerta = [
-                "Alerta" => "simple",
-                "Titulo" => "ERROR ",
-                "Texto" => "El número de cédula de tratante no se encuentra registrado en el sistema.",
+                "Titulo" => "ERROR",
+                "Texto" => "El apellido no coincide con el formato solicitado.",
                 "Tipo" => "error"
             ];
             echo json_encode($alerta);
@@ -125,13 +98,27 @@ class reposoControl extends reposoModel
             echo json_encode($alerta);
             exit();
         }
-        
+
+        // Comprobando la existencia del id
+
+        $check_id = modeloPrincipal::ejecutarConsultaSimple("SELECT id FROM user WHERE id='$id'");
+        if ($check_id->rowCount() <= 0) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR",
+                "Texto" => "El ID no existe dentro del sistema.",
+                "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
 
         $Inf_reg_rep = [
-            "Cedularep" => $cedrep,
+            "ID" => $id,
             "Duracion" => $duracionrep,
             "Patologia" => $patologiarep,
-            "Ceduladoc" => $ceddoc
+            "Nommed" => $nom_med,
+            "Apemed" => $ape_med
         ];
 
         $agg_rep = reposoModel::modelAgregarReposo($Inf_reg_rep);
@@ -157,7 +144,9 @@ class reposoControl extends reposoModel
 
     public function tablaReposoControl()
     {
-        $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM info_per, reposos WHERE cedula_pers=cedula_rep ORDER BY id_rep ASC";
+        $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM reposos INNER JOIN user INNER JOIN info_per WHERE id_user = id AND id_user = id_info GROUP BY id";
+        /*SELECT * FROM reposos INNER JOIN user WHERE id_user = id*/
+        /*FROM reposos INNER JOIN user INNER JOIN info_per WHERE id_user = id AND id_user = id_info */
 
 
         $conexion = modeloPrincipal::conexion();
