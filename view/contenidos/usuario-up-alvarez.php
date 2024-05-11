@@ -19,9 +19,11 @@ if ($_SESSION['nivel_UDO'] != 1) {
 ?>
 
 <div class="container mt-5">
-    <h2>Actualización de Usuario</h2>
+    <center>
+        <h2>Actualización de Usuario</h2>
+    </center>
     <form method="POST" data-form="update" class="registro FormularioAjax" action="<?php echo SERVERURL ?>ajax/ajaxUsuario.php">
-        <input type="hidden" name="ced_usuario_up" value="<?php echo $pagina[1]?>">
+        <input type="hidden" name="id_usuario_up" value="<?php echo $pagina[1]?>">
         <div class="form-group">
             <label for="nombres_up">Nombres:</label>
             <input type="text" class="form-control" name="nombre_up"  value ="<?php echo $campos['nombre_pers']?>" required>
@@ -32,17 +34,16 @@ if ($_SESSION['nivel_UDO'] != 1) {
         </div>
         <div class="form-group">
             <label for="tlf_up">Teléfono:</label>
-            <input type="text" class="form-control" name="telefono_up" value="<?php echo $campos['tlf_pers']?>" required>
+            <input type="text" class="form-control" name="telefono_up" value="<?php echo $campos['tlf_pers']?>">
         </div>
         <div class="form-group">
             <label for="password">Contraseña:</label>
-            <input type="password" class="form-control" name="pass_u_up"  required>
+            <input type="password" class="form-control" name="pass_u_up">
         </div>
         <div class="form-group">
             <label for="confirm_password">Repetir Contraseña:</label>
-            <input type="password" class="form-control" name="confirm_pass_u_up"  required>
+            <input type="password" class="form-control" name="confirm_pass_u_up">
         </div>
-        
         
         <br>
         <button type="submit" class="btn btn-primary" name="submit">Actualizar</button>

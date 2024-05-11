@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2024 a las 21:31:14
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: May 11, 2024 at 03:23 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `udo`
+-- Database: `udo`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `info_per`
+-- Table structure for table `info_per`
 --
 
 CREATE TABLE `info_per` (
@@ -32,21 +32,22 @@ CREATE TABLE `info_per` (
   `cedula_pers` varchar(255) NOT NULL,
   `nombre_pers` varchar(255) NOT NULL,
   `apellido_pers` varchar(255) NOT NULL,
-  `tlf_pers` varchar(255) NOT NULL
+  `tlf_pers` varchar(255) NOT NULL,
+  `id_usu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `info_per`
+-- Dumping data for table `info_per`
 --
 
-INSERT INTO `info_per` (`id_info`, `cedula_pers`, `nombre_pers`, `apellido_pers`, `tlf_pers`) VALUES
-(1, '87654321', 'Americio José', 'Alvarez Cárdenas', '04126973654'),
-(3, '33333333', 'Ana', 'Carmen', '04151364978');
+INSERT INTO `info_per` (`id_info`, `cedula_pers`, `nombre_pers`, `apellido_pers`, `tlf_pers`, `id_usu`) VALUES
+(1, '87654321', 'Americio José', 'Alvarez Cárdenas', '04126973654', 1),
+(3, '33333333', 'Anastacia', 'Carmen', '04444444444', 3);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `reposos`
+-- Table structure for table `reposos`
 --
 
 CREATE TABLE `reposos` (
@@ -59,13 +60,12 @@ CREATE TABLE `reposos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `reposos`
+-- Dumping data for table `reposos`
 --
 
 INSERT INTO `reposos` (`id_rep`, `duracion`, `patologia`, `nombre_med`, `apellido_med`, `id_user`) VALUES
 (6, '15', 'agua seca', 'Jose', 'Lorena', 1),
 (7, '15', 'mano pelua', 'juanito', 'alimaña', 3),
-(8, '15', 'esta bien', 'manta', 'raya', 2),
 (9, '15', 'pendejo', 'Jose', 'alimaña', 1),
 (10, '18', 'menso', 'Jose', 'raya', 1),
 (11, '18', 'asdasd', 'juanito', 'raya', 3),
@@ -74,78 +74,82 @@ INSERT INTO `reposos` (`id_rep`, `duracion`, `patologia`, `nombre_med`, `apellid
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `usuario` varchar(250) NOT NULL,
   `pass_u` varchar(250) NOT NULL,
-  `nivel` varchar(250) NOT NULL,
-  `cedula_usu` varchar(255) NOT NULL
+  `nivel` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `user`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `usuario`, `pass_u`, `nivel`, `cedula_usu`) VALUES
-(1, 'Alvarez', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', '87654321'),
-(2, 'Carlo', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '2', ''),
-(3, 'cesar', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', '59498'),
-(5, 'juana', 'ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1', '2', '33333333');
+INSERT INTO `user` (`id`, `usuario`, `pass_u`, `nivel`) VALUES
+(1, 'Alvarez', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1'),
+(3, 'cesar', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `info_per`
+-- Indexes for table `info_per`
 --
 ALTER TABLE `info_per`
-  ADD PRIMARY KEY (`id_info`);
+  ADD PRIMARY KEY (`id_info`),
+  ADD KEY `user` (`id_usu`);
 
 --
--- Indices de la tabla `reposos`
+-- Indexes for table `reposos`
 --
 ALTER TABLE `reposos`
   ADD PRIMARY KEY (`id_rep`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indices de la tabla `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `info_per`
+-- AUTO_INCREMENT for table `info_per`
 --
 ALTER TABLE `info_per`
-  MODIFY `id_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT de la tabla `reposos`
+-- AUTO_INCREMENT for table `reposos`
 --
 ALTER TABLE `reposos`
   MODIFY `id_rep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT de la tabla `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `reposos`
+-- Constraints for table `info_per`
+--
+ALTER TABLE `info_per`
+  ADD CONSTRAINT `info_per_ibfk_1` FOREIGN KEY (`id_usu`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `reposos`
 --
 ALTER TABLE `reposos`
   ADD CONSTRAINT `reposos_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

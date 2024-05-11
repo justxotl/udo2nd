@@ -144,7 +144,7 @@ class reposoControl extends reposoModel
 
     public function tablaReposoControl()
     {
-        $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM reposos INNER JOIN user INNER JOIN info_per WHERE id_user = id AND id_user = id_info GROUP BY id";
+        $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM reposos INNER JOIN user INNER JOIN info_per WHERE id_user = id AND id_user = id_info";
         /*SELECT * FROM reposos INNER JOIN user WHERE id_user = id*/
         /*FROM reposos INNER JOIN user INNER JOIN info_per WHERE id_user = id AND id_user = id_info */
 
@@ -181,7 +181,7 @@ class reposoControl extends reposoModel
                 <td>' . $rows['apellido_pers'] . '</td>
                 <td>' . $rows['cedula_pers'] . '</td>
                 
-                <td>
+                <td class="text-center">
                 <form class=" FormularioAjax" action="'.SERVERURL.'ajax/ajaxReposo.php" method="POST" data-form="delete">
                 
                 <input type="hidden" name="borrar_reg_rep" value="'.$rows['id_rep'].'">

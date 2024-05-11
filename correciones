@@ -1,24 +1,13 @@
 1-Ejecutar cambios en la BD para que sea relacional. (claves foráneas)
 
-~~2-Banner en todo el ancho de la pantalla con prioridad por sobre el sidebar y que parezca al menos que es de la udo.~~
-
-~~3-Mover el botón de cerrar sesión.~~
-
-~~4-Cambiar el texto de las barras laterales y el orden en el que los botones están ordenados.~~
-
-~~5-DATATABLE.~~
-
-6-Utilizar el GROUP BY para hacer la tabla con registros agrupados.
-
-~~7-Foto bonita para el login (creo que el login tambien lleva banner pero no sé).~~
-
-8-Selección de doctores con dropdown después de registrarlo.
-
-~~9-Cambiar la nomenclatura de los botones por una menos ambigua.~~
+2-Utilizar el GROUP BY para hacer la tabla con registros agrupados.
 
 
--------->PRIMERO<----------
 
-1
-6
-8
+
+
+
+
+        -------> Correciones y cosas por hacer <-------
+        -Modificar el codigo para que funcione (Listo)
+

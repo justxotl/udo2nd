@@ -10,6 +10,7 @@
       <a href="<?php echo SERVERURL ?>registro-rep/" class="list-group-item list-group-item-action text-light">
         Reposo
       </a>
+      
       <?php if ($_SESSION['nivel_UDO'] == 1) { ?>
         <a href="<?php echo SERVERURL ?>tabla-reposo/" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action text-light">
           Tabla de Reposos
@@ -21,10 +22,16 @@
           Usuario
         </a>
       <?php } ?>
-      <a href="" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action text-light btnCerrar_sesion">
-          Cerrar sesion
-        </a>
 
+      <?php if ($_SESSION['nivel_UDO'] == 1) { ?>
+        <a href="<?php echo SERVERURL ?>usuario-crud/" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action text-light">
+          Tabla de Usuarios
+        </a>
+      <?php } ?>
+
+      <a href="" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action text-light btnCerrar_sesion">
+          Cerrar Sesión
+        </a>
 
     </div>
   </div>

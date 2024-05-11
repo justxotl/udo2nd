@@ -34,7 +34,7 @@
         } else {
             session_start(['name' => 'UDO']);
             $pagina = explode("/", $_GET['alvarez']);
-            //http://localhost/udo/-> $pagina = "usuario" / "30201456" 
+            //http://localhost/udo/-> $pagina = "usuario" / "3" 
             require_once "./controllers/loginControl.php";
             $lc = new loginControl();
             if (!isset($_SESSION['token_UDO']) || !isset($_SESSION['usuario_UDO']) || !isset($_SESSION['nivel_UDO']) || !isset($_SESSION['id_UDO'])) {

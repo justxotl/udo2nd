@@ -3,16 +3,20 @@
 	height: 100vh;
     overflow-x: hidden;
 }
+
 .flex{
     display: flex;
 }
+
 .content{
     width: 100vw;
 	height: 100vh;
 }
+
 .titulo-login, .login{
     margin-top:-10%;
 }
+
 .containerd-fluid{
     width: 100vw;
 	height: 100vh;
@@ -23,7 +27,7 @@
 
 .containerd-fluid::after{
     content: ""; 
-    background: url(../img/esto.jpg), no-repeat;
+    background: url(../img/estoN.jpg), no-repeat;
     background-size: cover;
     opacity: 0.75; 
     top: 0; 
@@ -56,6 +60,7 @@
 }
 
 .registro input,
+
 .registro select{
     width: 100%;
 }
@@ -116,17 +121,18 @@ margin:auto;
     background-color: rgb(12, 88, 137);
 }
 
-
 .tabla-premium{
     margin-top: 1.5pc;
     width: 95%;
     margin: auto;
     margin-top: 30px;;
 }
+
 .list-group-item{
     background-color: rgb(12, 88, 137); 
 }
+
 .list-group-item:hover{
-    background-color: rgb(16, 125, 198); 
-   
+    background-color: rgb(16, 125, 198);
+    color: white;
 }

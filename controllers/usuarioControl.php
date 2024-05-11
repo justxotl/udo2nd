@@ -203,7 +203,7 @@ class usuarioControl extends usuarioModel
     public function tablaUsuarioControlador()
     {
 
-        $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM user, info_per WHERE cedula_usu=cedula_pers ORDER BY nivel, id ASC";
+        $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM user, info_per WHERE id=id_usu ORDER BY nivel, id ASC";
 
         $conexion = modeloPrincipal::conexion();
 
@@ -240,10 +240,10 @@ class usuarioControl extends usuarioModel
                 <td>' . $rows['cedula_pers'] . '</td>
                 <td>' . $rows['tlf_pers'] . '</td>
                 <td>' . $rows['nivel'] . '</td>
-                <td>
+                <td class="text-center">
                 <form class="  FormularioAjax" action="'.SERVERURL.'ajax/ajaxUsuario.php" method="POST" data-form"delete">
                 
-                <input type="hidden" name="borrar_ced_usuario" value="'.$rows['cedula_pers'].'">
+                <input type="hidden" name="borrar_id_usuario" value="'.$rows['id'].'">
                 
                 <button type="submit" class="btn btn-sm btn-danger">
                         Borrar
@@ -251,7 +251,7 @@ class usuarioControl extends usuarioModel
                 </form>
 
                 </td>
-                <td><a href="'.SERVERURL.'usuario-up/'.$rows['cedula_pers'].'/" class="btn btn-success btn-sm">Actualizar</a></td>
+                <td class="text-center"><a href="'.SERVERURL.'usuario-up/'.$rows['id'].'/" class="btn btn-success btn-sm">Actualizar</a></td>
             </tr>';
             }
         } else {
@@ -269,12 +269,12 @@ class usuarioControl extends usuarioModel
     public function borrarUsuarioControl()
     {
         //recibiendo el id del usuario
-        $ced= $_POST['borrar_ced_usuario'];
+        $id = $_POST['borrar_id_usuario'];
 
         // comprobando si el usuario existe en la base de datos
         
-        $revisarUsuario=modeloPrincipal::ejecutarConsultaSimple("SELECT cedula_usu FROM user WHERE cedula_usu='$ced'");
-        if($revisarUsuario->rowCount()<=0){
+        $revisarID=modeloPrincipal::ejecutarConsultaSimple("SELECT id FROM user WHERE id='$id'");
+        if($revisarID->rowCount()<=0){
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"ERROR",
@@ -285,9 +285,9 @@ class usuarioControl extends usuarioModel
             exit();
         }
 
-        $borrarUsuario= usuarioModel::borrarUsuarioModel($ced);
+        $borrarUsuario= usuarioModel::borrarUsuarioModel($id);
         
-        if($borrarUsuario-> rowCount()==2){
+        if($borrarUsuario-> rowCount()==1){
             $alerta=[
                 "Alerta"=>"recargar",
                 "Titulo"=>"Usuario Eliminado",
@@ -309,27 +309,27 @@ class usuarioControl extends usuarioModel
     }
 
     // Controlador datos usuario
-    public static function mostrarDatosControlador($ced)
+    public static function mostrarDatosControlador($id)
     {        
-        $ced= $ced;
-        return usuarioModel::mostrarDatosModelo($ced);
+        $id= $id;
+        return usuarioModel::mostrarDatosModelo($id);
     
     }/* Fin de del controlador */
 
 
     public function actualizarUsuarioControl()
     {
-            //Recibiendo cedula
-            $ced = $_POST['ced_usuario_up'];
+            //Recibiendo id
+            $id = $_POST['id_usuario_up'];
 
             //Comprobar el usuario en la BD
-            $comprobarUsu = modeloPrincipal::ejecutarConsultaSimple("SELECT * FROM user WHERE cedula_usu='$ced' ");
+            $comprobarUsu = modeloPrincipal::ejecutarConsultaSimple("SELECT * FROM user, info_per WHERE id = id_usu AND id='$id' ");
 
             if ($comprobarUsu->rowCount() <= 0) {
                 $alerta = [
                     "Alerta" => "simple",
                     "Titulo" => "ERROR",
-                    "Texto" => "No hemos encontrado el usuario en el sistema",
+                    "Texto" => "No hemos encontrado el usuario en el sistema.",
                     "Tipo" => "error"
                 ];
                 echo json_encode($alerta);
@@ -337,7 +337,6 @@ class usuarioControl extends usuarioModel
             } else {
                 $campos = $comprobarUsu->fetch();
             }
-            
 
         $claveF = $_POST['pass_u_up'];
         $confirm_clave = $_POST['confirm_pass_u_up'];
@@ -347,11 +346,11 @@ class usuarioControl extends usuarioModel
 
         /*--> comprobar campos vacios <--*/
 
-        if ($claveF == "" || $confirm_clave == ""|| $nombre == ""|| $apellido == ""|| $telefono == "") {
+        if ($nombre == ""|| $apellido == ""|| $telefono == "") {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "ERROR",
-                "Texto" => "Por favor rellene el Formulario en su totalidad",
+                "Texto" => "Por favor rellene el formulario en su totalidad",
                 "Tipo" => "error"
             ];
             echo json_encode($alerta);
@@ -379,62 +378,68 @@ class usuarioControl extends usuarioModel
             ];
             echo json_encode($alerta);
             exit();
-        }
-
-        if (modeloPrincipal::verificarDatos("[0-9\-]{11,12}", $telefono)) {
-            $alerta = [
-                "Alerta" => "simple",
-                "Titulo" => "ERROR",
-                "Texto" => "El número de teléfono no coincide con el formato solicitado.",
-                "Tipo" => "error"
-            ];
-            echo json_encode($alerta);
-            exit();
+        }    
+        
+        if($_POST['pass_u_up']!="" || $_POST['confirm_pass_u_up']!=""){
+            if($_POST['pass_u_up']!=$_POST['confirm_pass_u_up']){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"ERROR",
+                    "Texto"=>"Las claves otorgadas no coinciden.",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }else{
+                if(mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['pass_u_up']) || mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['confirm_pass_u_up']) ){
+                    $alerta=[
+                        "Alerta"=>"simple",
+                        "Titulo"=>"ERROR",
+                        "Texto"=>"Las claves otorgadas no se ajustan al formato permitido.",
+                        "Tipo"=>"error"
+                    ];
+                    echo json_encode($alerta);
+                    exit();
+                }
+                $clave = hash("sha256",$claveF);
+            }
+        }else{
+            $claveF=$campos['pass_u'];
         }
         
-        if (modeloPrincipal::verificarDatos("[a-zA-Z0-9$@.\-]{7,100}", $claveF) || modeloPrincipal::verificarDatos("[a-zA-Z0-9$@.\-]{7,100}", $confirm_clave)) {
-            $alerta = [
-                "Alerta" => "simple",
-                "Titulo" => "ERROR",
-                "Texto" => "Las claves no coinciden con el formato solicitado.",
-                "Tipo" => "error"
-            ];
-            echo json_encode($alerta);
-            exit();
+        if($_POST['telefono_up']==$campos['tlf_pers']){
+
+            $telefono=$campos['tlf_pers'];
+
+        }else{
+
+            $chequeo_tlf = modeloPrincipal::ejecutarConsultaSimple("SELECT tlf_pers FROM info_per WHERE tlf_pers ='$telefono'");
+            if ($chequeo_tlf->rowCount() > 0) {
+                $alerta = [
+                    "Alerta" => "simple",
+                    "Titulo" => "ERROR",
+                    "Texto" => "El número de teléfono ya se encuentra registrado en el sistema.",
+                    "Tipo" => "error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+            if (modeloPrincipal::verificarDatos("[0-9\-]{11,12}", $telefono)) {
+                $alerta = [
+                    "Alerta" => "simple",
+                    "Titulo" => "ERROR",
+                    "Texto" => "El número de teléfono no coincide con el formato solicitado.",
+                    "Tipo" => "error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+
         }
-
-         // Comprobando la existencia de un tlf igual
-
-        $chequeo_tlf = modeloPrincipal::ejecutarConsultaSimple("SELECT tlf_pers FROM info_per WHERE tlf_pers ='$telefono'");
-        if ($chequeo_tlf->rowCount() > 0) {
-            $alerta = [
-                "Alerta" => "simple",
-                "Titulo" => "ERROR",
-                "Texto" => "El número de teléfono ya se encuentra registrado en el sistema.",
-                "Tipo" => "error"
-            ];
-            echo json_encode($alerta);
-            exit();
-        }
-
-        /*--> Comprobando si claves las claves coinciden <--*/
-        if ($claveF != $confirm_clave) {
-            $alerta = [
-                "Alerta" => "simple",
-                "Titulo" => "ERROR",
-                "Texto" => "Las claves no coiciden",
-                "Tipo" => "error"
-            ];
-            echo json_encode($alerta);
-            exit();
-        } else {
-            $clave = hash("sha256",$claveF);
-        }
-
 
         $datoUsuarioUP = [
-            "Clave" => $clave,
-            "Cedula" => $ced,
+            "Clave" => $claveF,
+            "ID" => $id,
             "Nombres" => $nombre,
             "Apellidos" => $apellido,
             "Telefono" => $telefono

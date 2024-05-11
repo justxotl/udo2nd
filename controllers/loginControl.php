@@ -32,14 +32,13 @@ class loginControl extends loginModel
             echo '<script>
                 Swal.fire({
                     title: "A1",
-                    text: "Aun no hermano, sigue esperando",
+                    text: "Aun no hermano, sigue esperando.",
                     type: "error",
                     confirmButtonText: "Aceptar"
                 });
                 </script>';
             exit();
         }
-
 
         // verificando si los datos cumplen con el formato
         if (modeloPrincipal::verificarDatos("[a-zA-Z0-9]{3,35}", $usuario)) {
@@ -53,7 +52,8 @@ class loginControl extends loginModel
                 </script>';
             exit();
         }
-        if (modeloPrincipal::verificarDatos("[a-zA-Z0-9$@.\-]{7,100}", $clave)) {
+
+        if (modeloPrincipal::verificarDatos("[a-zA-Z0-9$@.\-]{8,100}", $clave)) {
             echo '<script>
                 Swal.fire({
                     title: "Ocurrio un error inesperado",
@@ -64,8 +64,6 @@ class loginControl extends loginModel
                 </script>';
             exit();
         }
-
-
 
         $datos_login = [
             "Usuario" => $usuario,

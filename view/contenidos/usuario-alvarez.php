@@ -46,8 +46,7 @@ if ($_SESSION['nivel_UDO'] != 1) {
         </div>
         <br>
         <center>
-        <button type="submit" class="btn btn-primary" name="submit">Registrar</button>
-        <a href="<?php echo SERVERURL?>usuario-crud" class="btn btn-success">CRUD</a>
+        <button type="submit" class="btn btn-primary" name="submit">Registrar Usuario</button>
         </center>    
     </form>
 </div>
