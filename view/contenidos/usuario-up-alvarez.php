@@ -34,7 +34,7 @@ if ($_SESSION['nivel_UDO'] != 1) {
         </div>
         <div class="form-group">
             <label for="tlf_up">Teléfono:</label>
-            <input type="text" class="form-control" name="telefono_up" value="<?php echo $campos['tlf_pers']?>">
+            <input type="text" class="form-control" name="telefono_up" value="<?php echo $campos['tlf_pers']?>" required>
         </div>
         <div class="form-group">
             <label for="password">Contraseña:</label>
