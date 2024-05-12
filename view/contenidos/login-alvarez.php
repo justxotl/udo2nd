@@ -15,6 +15,7 @@
                         <input type="password" class="form-control" name="password_lg" required>
                     </div>
                     <button type="submit" id="btlogin" class="btn btn-primary btn-block">Iniciar sesión</button>
+                    <a href="<?php echo SERVERURL ?>check-user/">¿Ha olvidado su contraseña?</a>
                 </form>
             </div>
         </div>

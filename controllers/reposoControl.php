@@ -250,7 +250,7 @@ class reposoControl extends reposoModel
 
                 &nbsp;
 
-                <a href="'.SERVERURL.'reporte/fpdf/fpdf.php" class="btn btn-sm btn-success" name="show-detalles">Detalles</a>
+                <a href="'.SERVERURL.'detalles-rep/'.$rows['id_rep'].'/" class="btn btn-success btn-sm">Detalles</a>
 
                 </tr>';
                 
@@ -265,6 +265,13 @@ class reposoControl extends reposoModel
         ';
         return $tabla;
 
+    }
+
+    public static function mostrarReposoControl($id)
+    {        
+        $id= $id;
+        return reposoModel::mostrarReposoModelo($id);
+    
     }
 
     //Controlador para eliminar un usuario

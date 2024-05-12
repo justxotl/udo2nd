@@ -29,4 +29,15 @@ class reposoModel extends modeloPrincipal
         return $sql;
     }
 
+     // Modelo datos reposo
+    protected static function mostrarReposoModelo($id){
+        
+        $sql=modeloPrincipal::conexion()->prepare("SELECT * FROM user, info_per, reposos WHERE id=id_usu AND id=id_user AND id_rep=:ID");
+        $sql->bindParam(":ID", $id);
+        $sql->execute();
+
+        return $sql;
+
+    }
+
 }

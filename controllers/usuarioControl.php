@@ -391,7 +391,7 @@ class usuarioControl extends usuarioModel
                 echo json_encode($alerta);
                 exit();
             }else{
-                if(mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['pass_u_up']) || mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['confirm_pass_u_up']) ){
+                if(modeloPrincipal::verificarDatos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['pass_u_up']) || modeloPrincipal::verificarDatos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['confirm_pass_u_up']) ){
                     $alerta=[
                         "Alerta"=>"simple",
                         "Titulo"=>"ERROR",
@@ -404,7 +404,7 @@ class usuarioControl extends usuarioModel
                 $clave = hash("sha256",$claveF);
             }
         }else{
-            $claveF=$campos['pass_u'];
+            $clave=$campos['pass_u'];
         }
         
         if($_POST['telefono_up']==$campos['tlf_pers']){
@@ -438,7 +438,7 @@ class usuarioControl extends usuarioModel
         }
 
         $datoUsuarioUP = [
-            "Clave" => $claveF,
+            "Clave" => $clave,
             "ID" => $id,
             "Nombres" => $nombre,
             "Apellidos" => $apellido,

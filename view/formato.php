@@ -29,7 +29,7 @@
 
         $view = $ins_view->control_obtener_view();
 
-        if ($view == "login" || $view == "404") {
+        if ($view == "login" || $view == "404" || $view == "preguntas" || $view == "check-user") {
             require_once "./view/contenidos/" . $view . "-alvarez.php";
         } else {
             session_start(['name' => 'UDO']);
