@@ -250,7 +250,7 @@ class reposoControl extends reposoModel
 
                 &nbsp;
 
-                <a href="'.SERVERURL.'reporte/fpdf.php" class="btn btn-sm btn-success" name="show-detalles">Detalles</a>
+                <a href="'.SERVERURL.'reporte/fpdf/fpdf.php" class="btn btn-sm btn-success" name="show-detalles">Detalles</a>
 
                 </tr>';
                 

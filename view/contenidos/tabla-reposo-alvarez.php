@@ -15,4 +15,3 @@ echo $insReposoTab->tablaReposoControl();
 
 ?>
 </div>
-
