@@ -19,9 +19,9 @@ if ($_SESSION['nivel_UDO'] != 1) {
 ?>
 
 <div class="container mt-5">
-    <center>
-        <h2>Actualización de Usuario</h2>
-    </center>
+
+    <center><h2>Actualización de Usuario</h2></center>
+    
     <form method="POST" data-form="update" class="registro FormularioAjax" action="<?php echo SERVERURL ?>ajax/ajaxUsuario.php">
         <input type="hidden" name="id_usuario_up" value="<?php echo $pagina[1]?>">
         <div class="form-group">

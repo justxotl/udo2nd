@@ -23,13 +23,13 @@ function enviar_formulario_ajax(e) {
     if (tipo === "save") {
         texto_alerta = "Los datos se guardaran en el sistema.";
     } else if (tipo === "delete") {
-        texto_alerta = "Los datos seran eliminados.";
+        texto_alerta = "Los datos serán eliminados.";
     } else if (tipo === "update") {
-        texto_alerta = "Los datos del sistema seran actualizados.";
+        texto_alerta = "Los datos en el sistema serán actualizados.";
     } else if (tipo === "search") {
-        texto_alerta = "Se eliminara el termino de busquedad y tendras que escribir uno nuevo...";
+        texto_alerta = "Se eliminará el término de busqueda y tendrás que escribir uno nuevo.";
     } else {
-        texto_alerta = "Quieres realizar la operacion solicitada?"
+        texto_alerta = "¿Quieres realizar la operación solicitada?"
     }
 
     Swal.fire({

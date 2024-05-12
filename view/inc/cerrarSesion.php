@@ -4,13 +4,13 @@
     btn_salir.addEventListener('click', function(e){
         e.preventDefault();
         Swal.fire({
-			title: 'Quieres salir del sistema?',
-			text: "La sesion actual se cerrara y saldras del sistema",
+			title: '¿Desea salir del sistema?',
+			text: "La sesión actual se cerrará y saldrás del sistema.",
 			type: 'question',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Si',
+			confirmButtonText: 'Aceptar',
 			cancelButtonText: 'Cancelar'
 		}).then((result) => {
 			if (result.value) {

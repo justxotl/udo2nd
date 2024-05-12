@@ -8,7 +8,7 @@ class usuarioModel extends modeloPrincipal
     protected static function modelAgregarUsers($datos)
     {
         $conn=modeloPrincipal::conexion();
-         
+        
         $sql = $conn->prepare("INSERT INTO user (usuario, pass_u, nivel) VALUES(:Usuario, :Clave, :Nivel)");
 
         $sql->bindParam(":Usuario", $datos['Usuario']);

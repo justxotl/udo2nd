@@ -127,7 +127,7 @@ class loginControl extends loginModel
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "Ocurrio un error inesperado",
-                "Texto" => "No se puedo cerrar la sesion",
+                "Texto" => "No se puedo cerrar la sesión.",
                 "Tipo" => "error"
             ];
         }

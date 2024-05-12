@@ -255,7 +255,7 @@ class usuarioControl extends usuarioModel
             </tr>';
             }
         } else {
-            $tabla .= '<tr> <td colspan="9">No hay resgistros en el sistema</td> </tr>';
+            $tabla .= '<tr> <td colspan="9">No hay registros en el sistema.</td> </tr>';
         }
 
         $tabla .= '

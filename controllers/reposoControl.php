@@ -144,7 +144,7 @@ class reposoControl extends reposoModel
 
     public function tablaReposoControl()
     {
-        $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM reposos INNER JOIN user INNER JOIN info_per WHERE id_user = id AND id_user = id_info";
+        $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM reposos INNER JOIN user INNER JOIN info_per WHERE id_user = id AND id_user = id_info GROUP BY cedula_pers";
         /*SELECT * FROM reposos INNER JOIN user WHERE id_user = id*/
         /*FROM reposos INNER JOIN user INNER JOIN info_per WHERE id_user = id AND id_user = id_info */
 
@@ -174,24 +174,86 @@ class reposoControl extends reposoModel
 
         if ($total >= 1) {
             foreach ($datos as $rows) {
+                
+                $tabla .= '
+                <tr>
+                <td>' . $rows['id'] . '</td>
+                <td>' . $rows['nombre_pers'] . '</td>
+                <td>' . $rows['apellido_pers'] . '</td>
+                <td>' . $rows['cedula_pers'] . '</td>
+                
+                <td class="d-flex justify-content-center">
+
+                <a href="'.SERVERURL.'rep-individual/'.$rows['id'].'/" class="btn btn-info btn-sm">Ver Reposos</a>
+
+                </tr>';
+            }
+        } else {
+            $tabla .= '<tr> <td colspan="9">No hay registros en el sistema</td> </tr>';
+        }
+
+        $tabla .= '
+        </tbody>
+        </table>
+        ';
+        return $tabla;
+
+    }
+
+    // Controlador ver reposos según la persona
+    public function tablaRepososIndv($id)
+    {
+        
+        $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM reposos INNER JOIN user INNER JOIN info_per WHERE id_user = id AND id_user = id_info AND id='$id'";
+
+        $conexion = modeloPrincipal::conexion();
+
+        $datos = $conexion->query($consulta);
+
+        $datos = $datos->fetchAll();
+        $total = $conexion->query("SELECT FOUND_ROWS()");
+
+        $total = (int) $total->fetchColumn();
+
+        $tabla = '
+        <table id="example" class="table table-striped table-bordered container">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Patología</th>
+                <th>Gestión</th>
+            </tr>
+        </thead>
+        <tbody>
+        ';
+
+        if ($total >= 1) {
+            foreach ($datos as $rows) {
+                
                 $tabla .= '
                 <tr>
                 <td>' . $rows['id_rep'] . '</td>
                 <td>' . $rows['nombre_pers'] . '</td>
                 <td>' . $rows['apellido_pers'] . '</td>
-                <td>' . $rows['cedula_pers'] . '</td>
+                <td>' . $rows['patologia'] . '</td>
                 
-                <td class="text-center">
+                <td class="d-flex justify-content-center">
                 <form class=" FormularioAjax" action="'.SERVERURL.'ajax/ajaxReposo.php" method="POST" data-form="delete">
                 
                 <input type="hidden" name="borrar_reg_rep" value="'.$rows['id_rep'].'">
                 
-                <button type="submit" class="btn btn-sm btn-danger">
-                        Borrar
-                    </button>
+                <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
+
                 </form>
 
-            </tr>';
+                &nbsp;
+
+                <a href="'.SERVERURL.'reporte/fpdf.php" class="btn btn-sm btn-success" name="show-detalles">Detalles</a>
+
+                </tr>';
+                
             }
         } else {
             $tabla .= '<tr> <td colspan="9">No hay registros en el sistema</td> </tr>';
