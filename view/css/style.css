@@ -136,3 +136,11 @@ margin:auto;
     background-color: rgb(16, 125, 198);
     color: white;
 }
+
+.form-recu{
+    background-color: white; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.60);
+    
+}

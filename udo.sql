@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2024 at 03:23 AM
+-- Generation Time: May 13, 2024 at 05:06 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -64,11 +64,8 @@ CREATE TABLE `reposos` (
 --
 
 INSERT INTO `reposos` (`id_rep`, `duracion`, `patologia`, `nombre_med`, `apellido_med`, `id_user`) VALUES
-(6, '15', 'agua seca', 'Jose', 'Lorena', 1),
-(7, '15', 'mano pelua', 'juanito', 'alimaña', 3),
+(6, '15', 'ASKDJALKSDJAKLSDJALKSDJALSDJALSDJASLDKASJDALSDKJASDLAKJSDLASDKJALSDKAJSDLAKSJDALSDKJASDLKAJSDLAKSDJALSKDJALSDKJASLDKAJSDLAKJSDLAKSDJALSKDJALSDKJASLDKJASDLKAJSDLAKJSDLAKSJDLAKSJDLAKSJDKALJSDLKAJSLDJASDLAKJSDLASDKJALSDKAJSDLAKSJDALSDKJASDLKAJSDLAKSDJALSKDJALSDKJASLDKAJSDLAKJSDLAKSDJALSKDJALSDKJASLDKJASDLKAJSDLAKJSDLAKSJDLAKSJDLAKSJDKALJSDLKAJSLDJASDLAKJSDLASDKJALSDKAJSDLAKSJDALSDKJASDLKAJSDLAKSDJALS', 'Jose', 'Lorena', 1),
 (9, '15', 'pendejo', 'Jose', 'alimaña', 1),
-(10, '18', 'menso', 'Jose', 'raya', 1),
-(11, '18', 'asdasd', 'juanito', 'raya', 3),
 (12, '18', 'ysdgsy', 'Jose', 'raya', 3);
 
 -- --------------------------------------------------------
@@ -79,18 +76,22 @@ INSERT INTO `reposos` (`id_rep`, `duracion`, `patologia`, `nombre_med`, `apellid
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `usuario` varchar(250) NOT NULL,
-  `pass_u` varchar(250) NOT NULL,
-  `nivel` varchar(250) NOT NULL
+  `usuario` varchar(250) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `pass_u` varchar(250) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `nivel` varchar(250) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `pregunta_uno` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pregunta_dos` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `resp_uno` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `resp_dos` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `usuario`, `pass_u`, `nivel`) VALUES
-(1, 'Alvarez', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1'),
-(3, 'cesar', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1');
+INSERT INTO `user` (`id`, `usuario`, `pass_u`, `nivel`, `pregunta_uno`, `pregunta_dos`, `resp_uno`, `resp_dos`) VALUES
+(1, 'Alvarez', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', 'venezuela', 'venezuela', 'venezuela', 'venezuela'),
+(3, 'cesar', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -124,7 +125,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `info_per`
 --
 ALTER TABLE `info_per`
-  MODIFY `id_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `reposos`
@@ -136,7 +137,7 @@ ALTER TABLE `reposos`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables

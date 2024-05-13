@@ -70,5 +70,19 @@ class usuarioModel extends modeloPrincipal
 
         return $sql;
     }
-}
 
+    /*--> Modelo para actualizar usuarios <--*/
+    protected static function actualizarPreguntasModel($datosQ){
+
+        $sql = modeloPrincipal::conexion()->prepare("UPDATE user SET pregunta_uno = :QUNO, pregunta_dos = :QDOS, resp_uno = :RUNO, resp_dos = :RDOS WHERE id = :ID;");
+        
+        $sql->bindParam(":QUNO", $datosQ['QUNO']);
+        $sql->bindParam(":QDOS", $datosQ['QDOS']);
+        $sql->bindParam(":RUNO", $datosQ['RUNO']);
+        $sql->bindParam(":RDOS", $datosQ['RDOS']);
+        $sql->bindParam(":ID", $datosQ['ID']);
+        $sql->execute();
+
+        return $sql;
+    }
+}

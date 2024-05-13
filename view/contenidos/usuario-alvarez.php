@@ -5,8 +5,8 @@ if ($_SESSION['nivel_UDO'] != 1) {
 }
 ?>
 
-<div class=" div-registro mb-3" id="registrot" style="padding-top: 50px;">
-    <h2 class=" text-center">Registro de Usuarios</h2>
+<div class=" div-registro mt-2" id="registrot" style="padding-top: 50px;">
+    <h2 class=" text-center m-3">Registro de Usuarios</h2>
     <form method="post" data-form="save" class="registro  FormularioAjax" id="formuregistro" action="<?php echo SERVERURL ?>ajax/ajaxUsuario.php">
     
         <div class="form-group">

@@ -7,7 +7,7 @@ class vistasModel
     protected static function model_obtener_view($view)
     {
         $listWhite = [
-            "dashboard", "usuario", "usuario-crud", "usuario-up", "registro-rep", "tabla-reposo", "rep-individual", "detalles-rep"
+            "dashboard", "usuario", "usuario-crud", "usuario-up", "registro-rep", "tabla-reposo", "rep-individual", "detalles-rep", "crear-preguntas"
         ];
 
         if (in_array($view, $listWhite)) {
@@ -22,6 +22,8 @@ class vistasModel
             $contenido = "check-user";
         } elseif ($view == "preguntas") {
             $contenido = "preguntas";
+        } elseif ($view == "pass-cambio") {
+            $contenido = "pass-cambio";
         } else {
             $contenido = "404";
         }

@@ -1,6 +1,6 @@
 
-<div class="mt-2" id="registrot">
-    <h2 class="text-center mb-3">Registro de Reposos</h2>
+<div class="mt-2" id="registrot" style="padding-top: 50px;">
+    <h2 class="text-center m-3">Registro de Reposos</h2>
     <form class="registro_rep mt-2 FormularioAjax" action="<?php echo SERVERURL?>ajax/ajaxReposo.php" method="POST" data-form="save">
         
     <input type="hidden" name="id_usuario_rep_reg" value="<?php echo $_SESSION['id_UDO']?>" >

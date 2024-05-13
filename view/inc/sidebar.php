@@ -29,6 +29,10 @@
         </a>
       <?php } ?>
 
+      <a href="<?php echo SERVERURL ?>crear-preguntas/<?php echo $_SESSION['id_UDO']?>" class="list-group-item list-group-item-action text-light">
+        Crear Preguntas
+      </a>
+
       <a href="" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action text-light btnCerrar_sesion">
           Cerrar Sesión
         </a>

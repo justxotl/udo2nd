@@ -25,7 +25,7 @@ if ($_SESSION['nivel_UDO'] != 1) {
 
                 <div><h3 class="text-center m-3">Detalles de Reposo</h3></div>
 
-        <form method="POST" class="FormularioAjax" id="pdfdetalles">
+        <form method="POST" id="pdfdetalles">
 
             <input type="hidden" name="id_rep_det" value="<?php echo $pagina[1]?>">
 
@@ -54,12 +54,12 @@ if ($_SESSION['nivel_UDO'] != 1) {
                     <label for="tlf_up">Duración:</label>
                     <input type="text" class="form-control" name="duracion-det" value="<?php echo $campos['duracion']?> días" disabled>
                 </div>
-
+                
                 <div class="form-group col-12">
                     <label for="tlf_up">Patología:</label>
                     <textarea class="form-control" name="patologia-det" form="pdfdetalles" rows="5" disabled><?php echo $campos['patologia']?></textarea>
                 </div>
-            
+
                 <div class="form-group col-6">
                     <label for="tlf_up">Nombres Médico:</label>
                     <input type="text" class="form-control" name="nommed-det" value="<?php echo $campos['nombre_med']?>" disabled>

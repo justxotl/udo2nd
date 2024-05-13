@@ -1,6 +1,6 @@
 <?php
 
-if ($_SESSION['nivel_UDO'] != 1) {
+if ($_SESSION['nivel_UDO'] != 1 ) {
     echo $lc->controlForzarCierreSesion();
     exit();
 }

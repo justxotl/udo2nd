@@ -148,7 +148,6 @@ class reposoControl extends reposoModel
         /*SELECT * FROM reposos INNER JOIN user WHERE id_user = id*/
         /*FROM reposos INNER JOIN user INNER JOIN info_per WHERE id_user = id AND id_user = id_info */
 
-
         $conexion = modeloPrincipal::conexion();
 
         $datos = $conexion->query($consulta);
@@ -171,7 +170,17 @@ class reposoControl extends reposoModel
         </thead>
         <tbody>
         ';
-
+        ?>
+        <style>
+        table{
+            table-layout: fixed;
+        }
+        td{
+            word-wrap: normal;
+            overflow: hidden;
+        }
+        </style>
+        <?php
         if ($total >= 1) {
             foreach ($datos as $rows) {
                 
@@ -228,7 +237,17 @@ class reposoControl extends reposoModel
         </thead>
         <tbody>
         ';
-
+        ?>
+        <style>
+        table{
+            table-layout: fixed;
+        }
+        td{
+            word-wrap: normal;
+            overflow: hidden;
+        }
+        </style>
+        <?php
         if ($total >= 1) {
             foreach ($datos as $rows) {
                 

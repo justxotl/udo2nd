@@ -1,44 +1,71 @@
 <?php 
-		require_once "./controllers/usuarioControl.php";
-		$ins_usu = new usuarioControl();
+$pagina = explode("/", $_GET['alvarez']);
 
-		$datos_usu=$ins_usu->mostrarDatosControlador($pagina[1]);
+        require_once "./controllers/loginControl.php";
+		$ins_q = new loginControl();
 
-	if($datos_usu->rowCount()==1){
+		$datos_q=$ins_q->controlRequerirQuestion($pagina[1]);
 
-		$campos= $datos_usu->fetch();
+	if($datos_q->rowCount()==1){
+
+        $campos= $datos_q->fetch();
 
 ?>
 
-<div class="container mt-5 row">
 
-    <center><h2>Recuperación de Clave</h2></center>
+<div class="tope containerd-fluid">
+    <div class="container justify-content-start">
+                <div class="text-center">
+                    <h2>Preguntas de Recuperación</h2>
+                </div>
+        <div class="row ">
+            <div class="col-12 form-recu">
     
-    <form method="POST" data-form="" class="registro FormularioAjax" action="<?php echo SERVERURL ?>ajax/ajaxUsuario.php">
-        <input type="hidden" name="id_recuperar" value="<?php echo $pagina[1]?>">
-        <div class="form-group">
-            <label for="user_rec">Usuario:</label>
-            <input type="text" class="form-control" name="nombre_up"  value ="<?php echo $campos['nombre_pers']?>" required>
-        </div>
-        <div class="form-group">
-            <label for="apellidos_up">Apellidos:</label>
-            <input type="text" class="form-control" name="apellido_up"  value="<?php echo $campos['apellido_pers']?>" required>
-        </div>
-        <div class="form-group">
-            <label for="tlf_up">Teléfono:</label>
-            <input type="text" class="form-control" name="telefono_up" value="<?php echo $campos['tlf_pers']?>" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Contraseña:</label>
-            <input type="password" class="form-control" name="pass_u_up">
-        </div>
-        <div class="form-group">
-            <label for="confirm_password">Repetir Contraseña:</label>
-            <input type="password" class="form-control" name="confirm_pass_u_up">
-        </div>
-        
-        <br>
-        <button type="submit" class="btn btn-primary" name="submit">Actualizar</button>
-    </form>
+        <form action="" method="POST"  class="">
+
+        <input type="hidden" name="name_usuario_q" value="<?php echo $pagina[1]?>">
+
+            <div class="form-group">
+                <label for="preguno">Pregunta #1:</label>
+                <input type="text" class="form-control" value ="<?php echo $campos['pregunta_uno']?>" disabled>
+            </div>
+            
+            <div class="form-group">
+                <label for="respuno">Respuesta #1:</label>
+                <input type="text" class="form-control" name="respuno" required> 
+            </div>
+            
+            <div class="form-group">
+                <label for="pregdos">Pregunta #2:</label>
+                <input type="text" class="form-control" value ="<?php echo $campos['pregunta_dos']?>" disabled>
+            </div>
+            
+            <div class="form-group">
+                <label for="respdos">Respuesta #2:</label>
+                <input type="text" class="form-control" name="respdos" required>
+            </div>
+
+            <center>
+                <button type="submit" class="btn btn-primary" name="submit">Actualizar</button>
+            </center>
+            
+        </form>
+
+            </div>
+        </div>   
+    </div>    
 </div>
+
+
 <?php }?>
+
+<?php
+if (isset($_POST['respuno']) && isset($_POST['respdos'])) {
+
+    require_once "./controllers/loginControl.php";
+
+    $ins_check_q= new loginControl();
+    
+    echo $ins_check_q -> controlChequeoRespuestas();
+
+}

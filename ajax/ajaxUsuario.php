@@ -2,7 +2,7 @@
 $peticionAjax = true;
 require_once "../config/aplicacion.php";
 
-if (isset($_POST['username']) || isset($_POST['borrar_id_usuario']) || isset($_POST['id_usuario_up']) ) {
+if (isset($_POST['username']) || isset($_POST['borrar_id_usuario']) || isset($_POST['id_usuario_up']) || isset($_POST['id_usuario_pregunta']) ) {
 
     // Instancia al controlador 
     require_once "../controllers/usuarioControl.php";
@@ -21,7 +21,13 @@ if (isset($_POST['username']) || isset($_POST['borrar_id_usuario']) || isset($_P
     if (isset($_POST['borrar_id_usuario'])) {
     echo $ins_usuario->borrarUsuarioControl();
     }
+
+    // Agregar preguntas de recuperación
+    if (isset($_POST['id_usuario_pregunta'])) {
+    echo $ins_usuario->actualizarPreguntasControl();
+    }
     
+
 } else {
     session_start(['name' => 'UDO']);
     session_unset();

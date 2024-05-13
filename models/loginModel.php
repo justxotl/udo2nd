@@ -15,4 +15,27 @@ class loginModel extends modeloPrincipal
 
         return $sql;
     }
+
+    //Modelo para recibir preguntas secretas
+    protected static function modeloRecibirPreguntas($quest){
+
+        $sql=modeloPrincipal::conexion()->prepare("SELECT * FROM user WHERE usuario=:Usuario");
+        $sql->bindParam(":Usuario", $quest);
+        $sql->execute();
+
+        return $sql;
+
+    }
+
+     //Modelo para 
+    protected static function resetearClaveModel($contra){
+
+        $sql = modeloPrincipal::conexion()->prepare("UPDATE user SET pass_u =:Clave WHERE usuario =:Usuario;");
+
+        $sql->bindParam(":Usuario", $contra['User']);
+        $sql->bindParam(":Clave", $contra['Pass']);
+        $sql->execute();
+
+        return $sql;
+    }
 }

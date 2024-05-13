@@ -311,7 +311,7 @@ class usuarioControl extends usuarioModel
     // Controlador datos usuario
     public static function mostrarDatosControlador($id)
     {        
-        $id= $id;
+        $id=$id;
         return usuarioModel::mostrarDatosModelo($id);
     
     }/* Fin de del controlador */
@@ -391,7 +391,7 @@ class usuarioControl extends usuarioModel
                 echo json_encode($alerta);
                 exit();
             }else{
-                if(modeloPrincipal::verificarDatos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['pass_u_up']) || modeloPrincipal::verificarDatos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['confirm_pass_u_up']) ){
+                if(modeloPrincipal::verificarDatos("[a-zA-Z$@.\-]{8,100}",$_POST['pass_u_up']) || modeloPrincipal::verificarDatos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['confirm_pass_u_up']) ){
                     $alerta=[
                         "Alerta"=>"simple",
                         "Titulo"=>"ERROR",
@@ -463,4 +463,114 @@ class usuarioControl extends usuarioModel
         echo json_encode($alerta);
     }/*--> Fin de del controlador <--*/
 
+    public function actualizarPreguntasControl(){
+
+        //Recibiendo id
+        $id = $_POST['id_usuario_pregunta'];
+
+        //Comprobar el usuario en la BD
+        $comprobarUsu = modeloPrincipal::ejecutarConsultaSimple("SELECT * FROM user WHERE id='$id' ");
+
+        if ($comprobarUsu->rowCount() <= 0) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR",
+                "Texto" => "No hemos encontrado el usuario en el sistema.",
+                "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        } else {
+            $campos = $comprobarUsu->fetch();
+        }
+
+        $q_uno = $_POST['preguntauno'];
+        $resp_uno = $_POST['respuestauno'];
+        $q_dos = $_POST['preguntados'];
+        $resp_dos = $_POST['respuestados'];
+
+        /*--> comprobar campos vacios <--*/
+
+        if ($q_uno == ""|| $resp_uno == ""|| $q_dos == ""|| $resp_dos == "") {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR",
+                "Texto" => "Por favor rellene el formulario en su totalidad",
+                "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        if(modeloPrincipal::verificarDatos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ?]{7,100}",$q_uno)){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"ERROR",
+                "Texto"=>"La primera pregunta no cumple con el formato",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        if(modeloPrincipal::verificarDatos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ?]{7,100}",$resp_uno)){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"ERROR",
+                "Texto"=>"La primera respuesta no cumple con el formato.",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        if(modeloPrincipal::verificarDatos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ?]{3,100}",$q_dos)){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"ERROR",
+                "Texto"=>"La segunda pregunta no cumple con el formato.",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        if(modeloPrincipal::verificarDatos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ?]{3,100}",$resp_dos)){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"ERROR",
+                "Texto"=>"La segunda respuesta no cumple con el formato.",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $infoPreguntas = [
+            "ID" => $id,
+            "QUNO" => $q_uno,
+            "RUNO" => $resp_uno,
+            "QDOS" => $q_dos,
+            "RDOS" => $resp_dos
+        ];
+        
+        $actualizarPreguntas= usuarioModel::actualizarPreguntasModel($infoPreguntas);
+
+        if ($actualizarPreguntas->rowCount() == 1) {
+            $alerta = [
+                "Alerta" => "recargar",
+                "Titulo" => "Datos actualizados.",
+                "Texto" => "Las preguntas han sido actualizadas.",
+                "Tipo" => "success"
+            ];
+        } else {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR",
+                "Texto" => "Los preguntas no se han podido actualizar.",
+                "Tipo" => "error"
+            ];
+        }
+        echo json_encode($alerta);
+    }
 }

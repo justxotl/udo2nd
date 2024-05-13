@@ -99,7 +99,6 @@ class loginControl extends loginModel
     //Controlador para forzar cierre de sesion al sistema
     public function controlForzarCierreSesion()
     {
-        
         session_unset();
         session_destroy();
         if (headers_sent()) {
@@ -133,4 +132,162 @@ class loginControl extends loginModel
         }
         echo json_encode($alerta);
     }/*Fin del controlador */
+
+    public function controlChequeoUser(){
+        
+        $usuario = $_POST['user-recuperar'];
+
+        if (modeloPrincipal::verificarDatos("[a-zA-Z0-9]{3,35}", $usuario)) {
+            echo '<script>
+                Swal.fire({
+                    title: "ERROR",
+                    text: "El usuario no coincide con el formato solicitado.",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+            exit();
+        }
+
+        $check_user = modeloPrincipal::ejecutarConsultaSimple("SELECT usuario FROM user WHERE usuario='$usuario'");
+        
+        if ($check_user->rowCount() < 1) {
+            echo '<script>
+                Swal.fire({
+                    title: "ERROR",
+                    text: "El usuario que ha ingresado no se encuentra registrado en el sistema.",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+            exit();
+        }else{
+            return header("Location: " . SERVERURL . "preguntas/".$usuario);
+        }
+    }
+
+    public function controlRequerirQuestion($preguntas){
+        
+        $quest = $preguntas;
+        return loginModel::modeloRecibirPreguntas($quest);
+
+    }
+
+    public function controlChequeoRespuestas(){
+
+        $resp1 = $_POST['respuno'];
+        $resp2 = $_POST['respdos'];
+        $usuario = $_POST['name_usuario_q'];
+
+        /*--> comprobar campos vacios <--*/
+
+        if ($resp1 == "" || $resp2 == "") {
+            echo '<script>
+                Swal.fire({
+                    title: "ERROR",
+                    text: "Por favor rellene el formulario en su totalidad.",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+            exit();
+        }
+
+        if(modeloPrincipal::verificarDatos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{7,100}",$resp1)){
+            echo '<script>
+                Swal.fire({
+                    title: "ERROR",
+                    text: "La primera respuesta no cumple con el formato solicitado.",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+            exit();
+        }
+
+        if(modeloPrincipal::verificarDatos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{3,100}",$resp2)){
+            echo '<script>
+                Swal.fire({
+                    title: "ERROR",
+                    text: "La segunda respuesta no cumple con el formato solicitado.",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+            exit();
+        }
+
+        $check_ans=modeloPrincipal::ejecutarConsultaSimple("SELECT * FROM user WHERE usuario='$usuario' AND resp_uno='$resp1' AND resp_dos='$resp2'");
+
+        if ($check_ans->rowCount() < 1) {
+            echo '<script>
+                Swal.fire({
+                    title: "ERROR",
+                    text: "Al menos una de las respuestas es incorrecta.",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+            exit();
+        }else{
+            return header("Location: " . SERVERURL . "pass-cambio/".$usuario);
+        }
+
+    }
+
+    public function controlResetearClave(){
+
+        $usuario =($_POST['name-usu-newpass']);
+        $pass =($_POST['reset-pass']);
+
+        if(modeloPrincipal::verificarDatos("[a-zA-Z0-9]{3,35}",$usuario)){
+            echo '<script>
+            Swal.fire({
+                title: "ERROR",
+                text: "El usuario no concuerda con el formato solicitado.",
+                type: "error",
+                confirmButtonText: "Aceptar"
+            });
+            </script>';
+            exit();
+
+        }
+        if(modeloPrincipal::verificarDatos("[a-zA-Z0-9$@.\-]{8,100}",$pass)){
+            echo '<script>
+            Swal.fire({
+                title: "ERROR",
+                text: "La contraseña no coincide con el formato solicitado.",
+                type: "error",
+                confirmButtonText: "Aceptar"
+            });
+            </script>';
+            exit();
+        }
+        $clave = hash("sha256",$pass);
+
+        $datosclave=[
+            "User"=>$usuario,
+            "Pass"=>$clave
+        ];
+        
+        $resetear = loginModel::resetearClaveModel($datosclave);
+
+        if($resetear->rowCount()==1){
+            echo'<script>
+                
+            Swal.fire({
+                title:"Actualización excitada",
+                text: "La actualización ha sido satisfactoria.",
+                type: "success",
+                confirmButtonText: "Aceptar",
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href ="'.SERVERURL.'login"
+                }
+            });
+            
+            
+            </script>'; 
+        }
+    }
 }
