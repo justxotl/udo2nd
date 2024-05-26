@@ -165,6 +165,7 @@ class reposoControl extends reposoModel
                 <th>Nombres</th>
                 <th>Apellidos</th>
                 <th>Cédula</th>
+                <th>N° de reposos</th>
                 <th>Gestión</th>
             </tr>
         </thead>
@@ -184,12 +185,17 @@ class reposoControl extends reposoModel
         if ($total >= 1) {
             foreach ($datos as $rows) {
                 
+                $id=$rows['id'];
+                $reposo=modeloPrincipal::ejecutarConsultaSimple("SELECT * FROM reposos WHERE id_user='$id'");
+                $Nreposo=$reposo->rowCount();
+                
                 $tabla .= '
                 <tr>
                 <td>' . $rows['id'] . '</td>
                 <td>' . $rows['nombre_pers'] . '</td>
                 <td>' . $rows['apellido_pers'] . '</td>
                 <td>' . $rows['cedula_pers'] . '</td>
+                <td>' .$Nreposo. '</td>
                 
                 <td class="d-flex justify-content-center">
 
@@ -232,6 +238,8 @@ class reposoControl extends reposoModel
                 <th>Nombres</th>
                 <th>Apellidos</th>
                 <th>Patología</th>
+                <th>Fecha Consignado</th>
+                <th>Fecha Vencimiento</th>
                 <th>Gestión</th>
             </tr>
         </thead>
@@ -257,6 +265,8 @@ class reposoControl extends reposoModel
                 <td>' . $rows['nombre_pers'] . '</td>
                 <td>' . $rows['apellido_pers'] . '</td>
                 <td>' . $rows['patologia'] . '</td>
+                <td>' . $rows['fecha_cert'] . '</td>
+                <td>' . $rows['fecha_ven'] . '</td>
                 
                 <td class="d-flex justify-content-center">
                 <form class=" FormularioAjax" action="'.SERVERURL.'ajax/ajaxReposo.php" method="POST" data-form="delete">

@@ -1,0 +1,17 @@
+bueno, falta que si solo una cosa, bueno dos, averiguar lo de los recordatorios de reposo, eso y el respaldo y recuperacion de bd, y lo de dompdf.
+
+A mi me falta es el 60% del modulo de pedidos y ya, sin contar lo que te acabo de decir
+
+Bueno, entonces falta;
+
+    Alertas de fechas
+    Aplicar dompdf
+    Respaldo y recuperación de BD
+
+
+
+    Lógica de Notificaciones de Fecha de Vencimiento(?)
+    Crear un script o código que esté siempre activo en la página que este siempre alerta de las fechas de vencimiento de los reposos, y además si estos están dentro de un rango de al menos 3 días de la fecha de vencimiento.
+    Investigar funciones de js que hagan consultas a la BD que hagan operaciones con fechas.
+    Crear campos en la tabla de reposos que contengan los valores de fecha de certificación y de vencimiento, que permitan datos iniciales nulos.
+

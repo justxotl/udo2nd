@@ -5,5 +5,3 @@
 
     $formato = new vistasControl();
     $formato-> control_obtener_formato();
-
-  
