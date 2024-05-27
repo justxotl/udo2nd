@@ -69,6 +69,16 @@ if ($_SESSION['nivel_UDO'] != 1) {
                     <label for="tlf_up">Apellidos Médico:</label>
                     <input type="text" class="form-control" name="apemed-det" value="<?php echo $campos['apellido_med']?>" disabled>
                 </div>
+                
+                <div class="form-group col-6">
+                    <label for="tlf_up">Fecha de Consignación:</label>
+                    <input type="text" class="form-control" name="fcon-det" value="<?php echo  date("d-m-Y", strtotime($campos['fecha_cert']))?>" disabled>
+                </div>
+                    
+                <div class="form-group col-6">
+                    <label for="tlf_up">Fecha de Vencimiento:</label>
+                    <input type="text" class="form-control" name="fven-det" value="<?php echo date("d-m-Y", strtotime($campos['fecha_ven']))?>" disabled>
+                </div>
             </div>
             <br>
             <button type="submit" class="btn btn-primary" name="submit" disabled>Generar PDF</button>

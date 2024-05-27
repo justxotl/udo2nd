@@ -40,4 +40,17 @@ class reposoModel extends modeloPrincipal
 
     }
 
+    //Modelo de fecha repso
+    protected static function consignarReposoModelo($fecha){
+        $sql = modeloPrincipal::conexion()->prepare("UPDATE reposos SET fecha_cert = :FechaCON , fecha_ven = :FechaVEN WHERE id_rep = :ID");
+
+        $sql->bindParam(":ID", $fecha['ID']);
+        $sql->bindParam(":FechaCON", $fecha['FechaCON']);
+        $sql->bindParam(":FechaVEN", $fecha['FechaVEN']);
+        $sql ->execute();
+
+        return $sql;
+
+    }
+
 }

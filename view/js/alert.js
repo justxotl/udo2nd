@@ -21,13 +21,15 @@ function enviar_formulario_ajax(e) {
     let texto_alerta;
 
     if (tipo === "save") {
-        texto_alerta = "Los datos se guardaran en el sistema.";
+        texto_alerta = "Los datos se guardarán en el sistema.";
     } else if (tipo === "delete") {
         texto_alerta = "Los datos serán eliminados.";
     } else if (tipo === "update") {
         texto_alerta = "Los datos en el sistema serán actualizados.";
     } else if (tipo === "search") {
         texto_alerta = "Se eliminará el término de busqueda y tendrás que escribir uno nuevo.";
+    } else if (tipo === "consignar") {
+        texto_alerta = "Se realizará la consignación del reposo.";
     } else {
         texto_alerta = "¿Quieres realizar la operación solicitada?"
     }

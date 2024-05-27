@@ -6,3 +6,4 @@
     <script src="<?php echo SERVERURL?>datatables/datatables.js"></script>
     <script src="<?php echo SERVERURL?>datatables/datatables.min.js"></script>
     <script src="<?php echo SERVERURL?>view/js/main.js"></script>
+    <script src="<?php echo SERVERURL?>view/js/all.js"></script>

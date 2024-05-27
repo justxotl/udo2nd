@@ -179,6 +179,7 @@ class reposoControl extends reposoModel
         td{
             word-wrap: normal;
             overflow: hidden;
+            text-overflow: ellipsis;
         }
         </style>
         <?php
@@ -253,6 +254,7 @@ class reposoControl extends reposoModel
         td{
             word-wrap: normal;
             overflow: hidden;
+            text-overflow: ellipsis;
         }
         </style>
         <?php
@@ -273,17 +275,28 @@ class reposoControl extends reposoModel
                 
                 <input type="hidden" name="borrar_reg_rep" value="'.$rows['id_rep'].'">
                 
-                <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
+                <button type="submit" class="btn btn-sm btn-danger" title="Borrar"><i class="fa-solid fa-trash-alt"></i></button>
 
                 </form>
 
                 &nbsp;
 
-                <a href="'.SERVERURL.'detalles-rep/'.$rows['id_rep'].'/" class="btn btn-success btn-sm">Detalles</a>
+                <a href="'.SERVERURL.'detalles-rep/'.$rows['id_rep'].'/" class="btn btn-primary btn-sm" title="Detalles"><i class="fa-solid fa-search-plus"></i></a>
+
+                &nbsp;
+
+                <form class=" FormularioAjax" action="'.SERVERURL.'ajax/ajaxReposo.php" method="POST" data-form="consignar">
+                
+                <input type="hidden" name="consignar_rep" value="'.$rows['id_rep'].'">
+                
+                <button type="submit" class="btn btn-sm btn-success" title="Consignar"><i class="fa-solid fa-check-double"></i></button>
+
+                </form>
 
                 </tr>';
                 
             }
+            
         } else {
             $tabla .= '<tr> <td colspan="9">No hay registros en el sistema</td> </tr>';
         }
@@ -344,6 +357,59 @@ class reposoControl extends reposoModel
 
         echo json_encode($alerta);
 
+    }
+
+    //Controlador para consignar un reposo
+    public function consignarReposoControl()
+    {
+        //recibiendo el id del reposo
+        $id_rep= $_POST['consignar_rep'];
+
+        // comprobando si el reposo existe en la base de datos
+        
+        $revisarReposo=modeloPrincipal::ejecutarConsultaSimple("SELECT id_rep FROM reposos WHERE id_rep='$id_rep'");
+        if($revisarReposo->rowCount()<=0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"ERROR",
+                "Texto"=>" Ahora te sientas y me explicas mediante método científico cómo hiciste esa vaina.",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $fechacon = date('Y-m-d');
+
+        $sumar = modeloPrincipal::ejecutarConsultaSimple("SELECT duracion FROM reposos WHERE id_rep='$id_rep'");
+        $suma = $sumar->fetch();
+
+        $fechaven = date('Y-m-d', strtotime($fechacon.'+'.$suma['duracion'].'days'));
+        
+        $fechas=[
+            "ID" => $id_rep,
+            "FechaCON" => $fechacon,
+            "FechaVEN" => $fechaven
+        ];
+
+        $datosfecha = reposoModel::consignarReposoModelo($fechas);
+        
+        if ($datosfecha->rowCount() == 1) {
+            $alerta = [
+                "Alerta" => "recargar",
+                "Titulo" => "Reposo Consignado",
+                "Texto" => "El reposo ha sigo consignado con éxito.",
+                "Tipo" => "success"
+            ];
+        } else {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "Error en la consignación del reposo.",
+                "Tipo" => "error"
+            ];
+        }
+        echo json_encode($alerta);
     }
 
 }
