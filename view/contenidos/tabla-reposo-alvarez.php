@@ -9,9 +9,9 @@ if ($_SESSION['nivel_UDO'] != 1) {
 <?php
 
 require_once "./controllers/reposoControl.php";
-$insReposoTab = new reposoControl();
+$insReposo = new reposoControl();
 
-echo $insReposoTab->tablaReposoControl();
+echo $insReposo->tablaReposoControl();
 
 ?>
 </div>

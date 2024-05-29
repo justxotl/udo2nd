@@ -10,11 +10,11 @@
 
 ?>
 
-    <div class="container mt-5">
+    <div class="container mt-2" style="padding-top: 20px;">
 
-    <center><h2>Preguntas de Recuperación</h2></center>
+    <center><h2 class="text-center m-3">Preguntas de Recuperación</h2></center>
     
-    <form method="POST" data-form="update" class="registro FormularioAjax" action="<?php echo SERVERURL ?>ajax/ajaxUsuario.php">
+    <form method="POST" data-form="update" class="registro mt-2 FormularioAjax" action="<?php echo SERVERURL ?>ajax/ajaxUsuario.php">
     
         <?php 
             if(($pagina[1]==$_SESSION['id_UDO'])){ 
@@ -39,9 +39,7 @@
             <input type="text" class="form-control" name="respuestados" value="<?php echo $campos['resp_dos']?>" required>
         </div>
         
-        <br>
-        
-        <button type="submit" class="btn btn-primary" name="submit">Registrar Preguntas</button>
+        <center><button type="submit" class="btn btn-primary" name="submit">Registrar Preguntas</button></center>
         <?php } ?>
     </form>
 </div>

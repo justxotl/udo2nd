@@ -224,8 +224,7 @@ class usuarioControl extends usuarioModel
                 <th>Cédula</th>
                 <th>Teléfono</th>
                 <th>Nivel</th>
-                <th>Eliminar</th>
-                <th>Actualizar</th>
+                <th>Gestión</th>
             </tr>
         </thead>
         <tbody>
@@ -240,18 +239,18 @@ class usuarioControl extends usuarioModel
                 <td>' . $rows['cedula_pers'] . '</td>
                 <td>' . $rows['tlf_pers'] . '</td>
                 <td>' . $rows['nivel'] . '</td>
-                <td class="text-center">
-                <form class="  FormularioAjax" action="'.SERVERURL.'ajax/ajaxUsuario.php" method="POST" data-form"delete">
+                <td class="d-flex justify-content-center">
+                <form class="  FormularioAjax" action="'.SERVERURL.'ajax/ajaxUsuario.php" method="POST" data-form="delete">
                 
                 <input type="hidden" name="borrar_id_usuario" value="'.$rows['id'].'">
                 
-                <button type="submit" class="btn btn-sm btn-danger">
-                        Borrar
-                    </button>
+                <button type="submit" class="btn btn-sm btn-danger" title="Eliminar"><i class="fa-solid fa-trash-alt"></i></button>
                 </form>
 
+                &nbsp;
+
+                <a href="'.SERVERURL.'usuario-up/'.$rows['id'].'/" class="btn btn-success btn-sm" title="Actualizar"><i class="fa-solid fa-pen-to-square"></i></a>
                 </td>
-                <td class="text-center"><a href="'.SERVERURL.'usuario-up/'.$rows['id'].'/" class="btn btn-success btn-sm">Actualizar</a></td>
             </tr>';
             }
         } else {

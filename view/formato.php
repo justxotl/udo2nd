@@ -8,7 +8,7 @@
     <style>
         #sidebar {
             width: 15%;
-            max-height: 180vh;
+            max-height: 140vh;
 
             background-color: rgb(12, 88, 137);
             
@@ -52,6 +52,7 @@
         
         <?php
             include "./view/inc/cerrarSesion.php";
+
         }
         include "./view/inc/script.php";
         ?>

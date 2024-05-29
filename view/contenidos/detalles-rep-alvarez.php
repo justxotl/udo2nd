@@ -7,6 +7,7 @@ if ($_SESSION['nivel_UDO'] != 1) {
 ?>
 
 <?php 
+
 		require_once "./controllers/reposoControl.php";
 		$ins_rep = new reposoControl();
 
@@ -81,7 +82,7 @@ if ($_SESSION['nivel_UDO'] != 1) {
                 </div>
             </div>
             <br>
-            <button type="submit" class="btn btn-primary" name="submit" disabled>Generar PDF</button>
+            <a href="<?php echo SERVERURL ?>formatoreporte/reportes.php?id=<?php echo $pagina[1]?>" class="btn btn-primary btn-sm" title="pdf">Generar PDF</a>
         </form>
     </div>
 </div>

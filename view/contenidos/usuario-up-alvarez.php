@@ -45,8 +45,7 @@ if ($_SESSION['nivel_UDO'] != 1 ) {
             <input type="password" class="form-control" name="confirm_pass_u_up">
         </div>
         
-        <br>
-        <button type="submit" class="btn btn-primary" name="submit">Actualizar</button>
+        <center><button type="submit" class="btn btn-primary" name="submit">Actualizar</button></center>
     </form>
 </div>
 <?php }?>
