@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2024 at 04:01 AM
+-- Generation Time: May 30, 2024 at 04:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,7 +42,8 @@ CREATE TABLE `info_per` (
 
 INSERT INTO `info_per` (`id_info`, `cedula_pers`, `nombre_pers`, `apellido_pers`, `tlf_pers`, `id_usu`) VALUES
 (1, '87654321', 'Americio José', 'Alvarez Cárdenas', '04126973654', 1),
-(3, '33333333', 'Anastacia', 'Carmen', '04444444444', 3);
+(3, '33333333', 'Anastacia', 'Carmen', '04444444444', 3),
+(12, '16958789', 'Adrian', 'Manuel', '04167984369', 15);
 
 -- --------------------------------------------------------
 
@@ -67,10 +68,11 @@ CREATE TABLE `reposos` (
 
 INSERT INTO `reposos` (`id_rep`, `duracion`, `patologia`, `nombre_med`, `apellido_med`, `fecha_cert`, `fecha_ven`, `id_user`) VALUES
 (6, '15', 'ASKDJALKSDJAKLSDJALKSDJALSDJALSDJASLDKASJDALSDKJASDLAKJSDLASDKJALSDKAJSDLAKSJDALSDKJASDLKAJSDLAKSDJALSKDJALSDKJASLDKAJSDLAKJSDLAKSDJALSKDJALSDKJASLDKJASDLKAJSDLAKJSDLAKSJDLAKSJDLAKSJDKALJSDLKAJSLDJASDLAKJSDLASDKJALSDKAJSDLAKSJDALSDKJASDLKAJSDLAKSDJALSKDJALSDKJASLDKAJSDLAKJSDLAKSDJALSKDJALSDKJASLDKJASDLKAJSDLAKJSDLAKSJDLAKSJDLAKSJDKALJSDLKAJSLDJASDLAKJSDLASDKJALSDKAJSDLAKSJDALSDKJASDLKAJSDLAKSDJALS', 'Jose', 'Lorena', '2024-05-26', '2024-06-10', 1),
-(9, '15', 'gripe', 'Jose', 'alimaña', NULL, NULL, 1),
-(12, '18', 'ysdgsy', 'Jose', 'raya', NULL, NULL, 3),
-(13, '7', 'herpes', 'Antonieta ', 'de las Nieves', NULL, NULL, 1),
-(14, '9', 'ejemplo', 'juana', 'perez', NULL, NULL, 1);
+(9, '15', 'gripe', 'Jose', 'alimaña', '2024-04-01', '2024-04-08', 1),
+(12, '18', 'ysdgsy', 'Jose', 'raya', '2024-05-26', '2024-06-13', 3),
+(13, '7', 'herpes', 'Antonieta ', 'de las Nieves', '2024-05-02', '2024-05-09', 1),
+(15, '3', 'testeo', 'esto', 'estootro', '2024-05-25', '2024-05-28', 1),
+(16, '20', 'esjemapsdl', 'yomismo', 'tumiso', NULL, NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -95,7 +97,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `usuario`, `pass_u`, `nivel`, `pregunta_uno`, `pregunta_dos`, `resp_uno`, `resp_dos`) VALUES
 (1, 'Alvarez', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', 'venezuela', 'venezuela', 'venezuela', 'venezuela'),
-(3, 'cesar', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', NULL, NULL, NULL, NULL);
+(3, 'cesar', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', NULL, NULL, NULL, NULL),
+(15, 'Adrian', '34b8d380d481b933d5238d945a16ee6c0be176960926735bce473b829e4bd517', '1', NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -129,19 +132,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `info_per`
 --
 ALTER TABLE `info_per`
-  MODIFY `id_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `reposos`
 --
 ALTER TABLE `reposos`
-  MODIFY `id_rep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_rep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
