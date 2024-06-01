@@ -4,11 +4,12 @@ require_once "modeloPrincipal.php";
 
 class reposoModel extends modeloPrincipal
 {
-    // Modelo para agregar usuarios 
+    // Modelo para agregar reposos
     protected static function modelAgregarReposo($datos)
     {
-        $sql = modeloPrincipal::conexion()->prepare("INSERT INTO reposos (duracion, patologia, nombre_med, apellido_med, id_user) VALUES(:Duracion, :Patologia, :Nombremed, :Apellidomed, :IDuser)");
+        $sql = modeloPrincipal::conexion()->prepare("INSERT INTO reposos (fecha_cert, duracion, patologia, nombre_med, apellido_med, id_user) VALUES(:Inicio, :Duracion, :Patologia, :Nombremed, :Apellidomed, :IDuser)");
         
+        $sql->bindParam(":Inicio", $datos['Inicio']);
         $sql->bindParam(":Duracion", $datos['Duracion']);
         $sql->bindParam(":Patologia", $datos['Patologia']);
         $sql->bindParam(":Nombremed", $datos['Nommed']);
@@ -18,7 +19,7 @@ class reposoModel extends modeloPrincipal
         return $sql;
     }
 
-    //Modelo para eliminar usuarios
+    //Modelo para eliminar reposos
     protected static function borrarReposoModel($id_rep)
     {
         $sql = modeloPrincipal::conexion()->prepare("DELETE FROM reposos WHERE id_rep=:ID");
@@ -42,10 +43,9 @@ class reposoModel extends modeloPrincipal
 
     //Modelo de fecha repso
     protected static function consignarReposoModelo($fecha){
-        $sql = modeloPrincipal::conexion()->prepare("UPDATE reposos SET fecha_cert = :FechaCON , fecha_ven = :FechaVEN WHERE id_rep = :ID");
+        $sql = modeloPrincipal::conexion()->prepare("UPDATE reposos SET fecha_ven = :FechaVEN WHERE id_rep = :ID");
 
         $sql->bindParam(":ID", $fecha['ID']);
-        $sql->bindParam(":FechaCON", $fecha['FechaCON']);
         $sql->bindParam(":FechaVEN", $fecha['FechaVEN']);
         $sql ->execute();
 

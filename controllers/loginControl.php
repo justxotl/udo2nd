@@ -276,8 +276,8 @@ class loginControl extends loginModel
             echo'<script>
                 
             Swal.fire({
-                title:"Actualización excitada",
-                text: "La actualización ha sido satisfactoria.",
+                title:"Actualización exitosa.",
+                text: "La actualización de la clave ha sido satisfactoria.",
                 type: "success",
                 confirmButtonText: "Aceptar",
             }).then((result) => {

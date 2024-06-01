@@ -1,8 +1,7 @@
 $(document).ready(function () {
     $('#example').DataTable({
-        columnDefs: [
-            {width: '10%', target:[0,5]},
-        ],
+        "lengthMenu": [3, 5, 10],
+        "pageLength": 5,
         "language":{
             "lengthMenu":"Mostrar _MENU_ registros.",
             "zeroRecords":"No se encontraron registros.",
@@ -24,6 +23,8 @@ $(document).ready(function () {
 /*funcion especificamente hecha para la tabla de reposo individual*/
 $(document).ready(function () {
     $('#example2').DataTable({
+        "lengthMenu": [3, 5, 10],
+        "pageLength": 5,
         columnDefs: [
             {width: '6%', target:[0]},
             {width: '12%', target:[4,5]},

@@ -218,7 +218,6 @@ class usuarioControl extends usuarioModel
         <table id="example" class="table table-striped table-bordered container">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nombres</th>
                 <th>Apellidos</th>
                 <th>Cédula</th>
@@ -233,7 +232,6 @@ class usuarioControl extends usuarioModel
             foreach ($datos as $rows) {
                 $tabla .= '
                 <tr>
-                <td>' . $rows['id'] . '</td>
                 <td>' . $rows['nombre_pers'] . '</td>
                 <td>' . $rows['apellido_pers'] . '</td>
                 <td>' . $rows['cedula_pers'] . '</td>
@@ -501,7 +499,7 @@ class usuarioControl extends usuarioModel
             exit();
         }
 
-        if(modeloPrincipal::verificarDatos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ?]{7,100}",$q_uno)){
+        if(modeloPrincipal::verificarDatos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ?]{3,100}",$q_uno)){
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"ERROR",
@@ -512,7 +510,7 @@ class usuarioControl extends usuarioModel
             exit();
         }
 
-        if(modeloPrincipal::verificarDatos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ?]{7,100}",$resp_uno)){
+        if(modeloPrincipal::verificarDatos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ?]{3,100}",$resp_uno)){
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"ERROR",
