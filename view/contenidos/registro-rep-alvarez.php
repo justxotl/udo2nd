@@ -44,9 +44,11 @@
                 <input type="text" class="form-control" name="apellidos_doc" required>
             </div>
 
-            <center>
-                <button type="submit" class="btn btn-primary">Enviar Registro</button>
-            </center>
+            
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Enviar Registro</button>
+                </div>
+            
     </form>
 
 </div>

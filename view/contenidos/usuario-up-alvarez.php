@@ -20,7 +20,9 @@ if ($_SESSION['nivel_UDO'] != 1 ) {
 
 <div class="container mt-5">
 
-    <center><h2>Actualización de Usuario</h2></center>
+    <div class="text-center">
+        <h2>Actualización de Usuario</h2>
+    </div>
     
     <form method="POST" data-form="update" class="registro FormularioAjax" action="<?php echo SERVERURL ?>ajax/ajaxUsuario.php">
         <input type="hidden" name="id_usuario_up" value="<?php echo $pagina[1]?>">
@@ -45,7 +47,9 @@ if ($_SESSION['nivel_UDO'] != 1 ) {
             <input type="password" class="form-control" name="confirm_pass_u_up">
         </div>
         
-        <center><button type="submit" class="btn btn-primary" name="submit">Actualizar</button></center>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" name="submit">Actualizar</button>
+        </div>
     </form>
 </div>
 <?php }?>

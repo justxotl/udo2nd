@@ -12,8 +12,8 @@ if ($_SESSION['nivel_UDO'] != 1) {
 
                 <div><h3 class="text-center m-3">Registro de Usuarios</h3></div>
 
-                <form method="post" data-form="save" class="FormularioAjax registrousu" id="formuregistro" action="<?php echo SERVERURL ?>ajax/ajaxUsuario.php">
-                <div class="row">
+    <form method="post" data-form="save" class="FormularioAjax registrousu" id="formuregistro" action="<?php echo SERVERURL ?>ajax/ajaxUsuario.php">
+    <div class="row">
     <div class="form-group col-6">
         <label for="nombres_usu">Nombres:</label>
         <input type="text" class="form-control" name="nombres_usu" required>
@@ -51,9 +51,11 @@ if ($_SESSION['nivel_UDO'] != 1) {
     </div>
     </div>
     <br>
-    <center>
-    <button type="submit" class="btn btn-primary" name="submit">Registrar Usuario</button>
-    </center>    
-</form>
+    
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary jutify-center" name="submit">Registrar Usuario</button>
     </div>
+        
+</form>
+</div>
 </div>

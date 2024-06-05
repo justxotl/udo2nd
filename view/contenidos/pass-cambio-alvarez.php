@@ -19,9 +19,11 @@ $pagina = explode("/", $_GET['alvarez']);
                     <input type="text" class="form-control" name="reset-pass" placeholder="Escriba su nueva contraseña." required>
                 </div>
 
-                <center>
-                    <button type="submit" class="btn btn-primary">Reestablecer</button>
-                </center>
+                
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Reestablecer</button>
+                    </div>
+                
 
                 </form>
 

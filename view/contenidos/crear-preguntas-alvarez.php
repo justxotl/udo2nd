@@ -39,7 +39,9 @@
             <input type="text" class="form-control" name="respuestados" value="<?php echo $campos['resp_dos']?>" required>
         </div>
         
-        <center><button type="submit" class="btn btn-primary" name="submit">Registrar Preguntas</button></center>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" name="submit">Registrar Preguntas</button>
+        </div>
         <?php } ?>
     </form>
 </div>

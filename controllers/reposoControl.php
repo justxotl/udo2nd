@@ -234,10 +234,7 @@ class reposoControl extends reposoModel
                 <td class="d-flex justify-content-center">
 
                 <a href="'.SERVERURL.'rep-individual/'.$rows['id'].'/" class="btn btn-info btn-sm" title="Ver Reposos"><i class="fa-solid fa-eye"></i></a>
-                
-                &nbsp;
 
-                <a href="'.SERVERURL.'registro-rep/'.$rows['id'].'/" class="btn btn-primary btn-sm" title="Agregar Reposo"><i class="fa-solid fa-plus"></i></a>
 
                 </td>
                 </tr>';

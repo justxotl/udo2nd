@@ -12,7 +12,9 @@
                     <label for="user-recuperar" text-center>Usuario:</label>
                     <input type="text" class="form-control" name="user-recuperar" placeholder="Escriba su nombre de usuario." required>
                 </div>
-                <button type="submit" class="btn btn-primary">Validar</button>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Validar</button>
+                </div>
 
                 </form>
 

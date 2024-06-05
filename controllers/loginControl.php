@@ -72,7 +72,6 @@ class loginControl extends loginModel
 
         $Info_cuenta = loginModel::modeloIniciarSesion($datos_login);
 
-
         if ($Info_cuenta->rowCount() == 1) {
             $row = $Info_cuenta->fetch();
 
@@ -87,7 +86,7 @@ class loginControl extends loginModel
             echo '<script>
                 Swal.fire({
                     title: "Ocurrio un error inesperado",
-                    text: "El Usuario o clave son incorrectos, Intente de nuevo",
+                    text: "El usuario o clave son incorrectos, intente de nuevo.",
                     type: "error",
                     confirmButtonText: "Aceptar"
                 });
@@ -178,8 +177,6 @@ class loginControl extends loginModel
         $resp1 = $_POST['respuno'];
         $resp2 = $_POST['respdos'];
         $usuario = $_POST['name_usuario_q'];
-
-        /*--> comprobar campos vacios <--*/
 
         if ($resp1 == "" || $resp2 == "") {
             echo '<script>

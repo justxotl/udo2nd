@@ -248,6 +248,10 @@ class usuarioControl extends usuarioModel
                 &nbsp;
 
                 <a href="'.SERVERURL.'usuario-up/'.$rows['id'].'/" class="btn btn-success btn-sm" title="Actualizar"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                &nbsp;
+
+                <a href="'.SERVERURL.'registro-rep/'.$rows['id'].'/" class="btn btn-primary btn-sm" title="Agregar Reposo"><i class="fa-solid fa-plus"></i></a>
                 </td>
             </tr>';
             }
@@ -388,7 +392,7 @@ class usuarioControl extends usuarioModel
                 echo json_encode($alerta);
                 exit();
             }else{
-                if(modeloPrincipal::verificarDatos("[a-zA-Z$@.\-]{8,100}",$_POST['pass_u_up']) || modeloPrincipal::verificarDatos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['confirm_pass_u_up']) ){
+                if(modeloPrincipal::verificarDatos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['pass_u_up']) || modeloPrincipal::verificarDatos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['confirm_pass_u_up']) ){
                     $alerta=[
                         "Alerta"=>"simple",
                         "Titulo"=>"ERROR",

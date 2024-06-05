@@ -45,9 +45,11 @@ $pagina = explode("/", $_GET['alvarez']);
                 <input type="text" class="form-control" name="respdos" required>
             </div>
 
-            <center>
-                <button type="submit" class="btn btn-primary" name="submit">Actualizar</button>
-            </center>
+            
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" name="submit">Actualizar</button>
+                </div>
+            
             
         </form>
 
