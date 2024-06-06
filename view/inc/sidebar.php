@@ -33,6 +33,12 @@
         Crear Preguntas
       </a>
 
+      <?php if ($_SESSION['nivel_UDO'] == 1) { ?>
+        <a href="<?php echo SERVERURL ?>respaldos/" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action text-light">
+          Respaldo y Restauración
+        </a>
+      <?php } ?>
+
       <a href="" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action text-light btnCerrar_sesion">
           Cerrar Sesión
         </a>

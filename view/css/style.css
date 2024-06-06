@@ -27,7 +27,7 @@
 
 .containerd-fluid::after{
     content: ""; 
-    background: url(../img/fon2.jpg), no-repeat;
+    background: url(../img/estoN.jpg), no-repeat;
     background-size: cover;
     opacity: 0.75; 
     top: 0; 
@@ -161,3 +161,14 @@ margin:auto;
     table-layout: fixed;
     word-wrap: break-word
 }
+
+.selector{
+    border: 1px solid;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+

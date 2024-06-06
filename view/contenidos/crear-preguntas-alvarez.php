@@ -12,7 +12,9 @@
 
     <div class="container mt-2" style="padding-top: 20px;">
 
-    <center><h2 class="text-center m-3">Preguntas de Recuperación</h2></center>
+    <div class="text-center">
+        <h2 class="text-center m-3">Preguntas de Recuperación</h2>
+    </div>
     
     <form method="POST" data-form="update" class="registro mt-2 FormularioAjax" action="<?php echo SERVERURL ?>ajax/ajaxUsuario.php">
     

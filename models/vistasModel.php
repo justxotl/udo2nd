@@ -7,7 +7,7 @@ class vistasModel
     protected static function model_obtener_view($view)
     {
         $listWhite = [
-            "dashboard", "usuario", "usuario-crud", "usuario-up", "registro-rep", "tabla-reposo", "rep-individual", "detalles-rep", "crear-preguntas"
+            "dashboard", "usuario", "usuario-crud", "usuario-up", "registro-rep", "tabla-reposo", "rep-individual", "detalles-rep", "crear-preguntas", "respaldos"
         ];
 
         if (in_array($view, $listWhite)) {
