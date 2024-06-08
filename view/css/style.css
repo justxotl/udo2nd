@@ -61,7 +61,7 @@
 .registro {
     background-color: white;
     padding: 20px;
-    width: 50% !important;
+    width: 60% !important;
     margin: auto;
     border-radius: 8px;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.50);
@@ -131,7 +131,7 @@ margin:auto;
 
 .cab-div{
     align-items: center;
-    background-color: rgb(12, 88, 137);
+    background-color: rgb(10, 62, 97);
 }
 
 .tabla-premium{
@@ -147,7 +147,6 @@ margin:auto;
 
 .list-group-item:hover{
     background-color: rgb(16, 125, 198);
-    color: white;
 }
 
 .form-recu{
@@ -172,3 +171,21 @@ margin:auto;
     -o-border-radius: 4px;
 }
 
+.head{
+    margin-bottom: 125px;
+}
+
+.pdflogo{
+    max-width: 7pc;
+    float:left
+}
+
+.textopdf{
+    float: left;
+    margin: 2.5% 2%;
+
+}
+
+.titulopdf{
+    justify-content: center;
+}

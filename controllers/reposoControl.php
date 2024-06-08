@@ -208,7 +208,7 @@ class reposoControl extends reposoModel
         <?php
         if ($total >= 1) {
             foreach ($datos as $rows) {
-                    
+                
                 $id=$rows['id'];
                 $reposo=modeloPrincipal::ejecutarConsultaSimple("SELECT * FROM reposos WHERE id_user='$id'");
                 $Nreposo=$reposo->rowCount();

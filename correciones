@@ -1,10 +1,4 @@
-A mi me falta es el 60% del modulo de pedidos y ya, sin contar lo que te acabo de decir
+ya casi, falta poco
+ 
 
-Bueno, entonces falta;
-
-    Respaldo y recuperación de BD
-
-Bueno, estaba pensando en primer lugar en un campo que tomara el nivel de usuario de la sesión y lo mandara via formulario al controlador me imagino que tendría que haber otro campo adicional que te de el id del usuario activo (id_UDO).
-En el controlador se haria la consulta en la tabla de usuario para comparar si el nivel de usuario activo es igual al del mismo usuario en la bd.
-Ahora, si el usuario es de nivel 1 o sea administrador, el id del campo del formulario no tene que ser necesariamente el mismo valor que el de usuario. 
-Si el nivel es 2 entonces tendrían que comparar el valor de id_sesion y el id del campo oculto del formulario y solo dejar hacer el envio si son iguales:
+si, vamos que si se puede 

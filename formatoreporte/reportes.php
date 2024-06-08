@@ -14,7 +14,18 @@ include ('../config/aplicacion.php');
     <link rel="stylesheet" href="<?php echo SERVERURL; ?>view/css/style.css">
 </head>
 <body>
-    
+
+<div class="head">
+    <div class="logopdf">
+        <img class="pdflogo" src="<?php echo SERVERURL ?>view/img/logo2.jpeg" alt="">
+    </div>
+    <div class="textopdf">
+    <h5>Universidad de Oriente - Venezuela</h5>
+    <h5>Núcleo Bolívar</h5>
+    <h5>Detalles de Reposo</h5>
+    </div> 
+</div>
+
 <?php 
         
         $peticionAjax = false;
@@ -28,8 +39,6 @@ include ('../config/aplicacion.php');
 
 		$campos= $datos_pdf->fetch();
 ?>
-
-<div><h3 class="text-center m-3">Detalles del Reposo</h3></div>
 
     <table class="table table-striped table-bordered container">
         <thead>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2024 at 05:57 AM
+-- Generation Time: Jun 08, 2024 at 11:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -65,7 +65,9 @@ CREATE TABLE `medico` (
 --
 
 INSERT INTO `medico` (`id_med`, `ced_med`, `nom_med`, `ape_med`) VALUES
-(1, '10101010', 'asdklñjasdlk', 'dlajsdlkajksld');
+(1, '10101010', 'asdklñjasdlk', 'dlajsdlkajksld'),
+(3, '12121212', 'sdfgklñsdj', 'askldjalsjdj'),
+(5, '45645646', 'eduardo jose', 'cerezo mejias');
 
 -- --------------------------------------------------------
 
@@ -93,12 +95,12 @@ INSERT INTO `reposos` (`id_rep`, `duracion`, `patologia`, `fecha_cert`, `fecha_v
 (12, '18', 'ysdgsy', '2024-05-26', '2024-06-13', 3, 1),
 (13, '7', 'fractura fracturafracturafracturafracturafracturafracturafracturafracturafracturafracturafracturafracturafracturafracturafracturafractura', '2024-05-02', '2024-05-09', 1, 1),
 (15, '3', 'testeo', '2024-05-25', '2024-05-28', 1, 1),
-(16, '20', 'esjemapsdl', '2024-05-01', NULL, 3, 1),
-(17, '10', 'dolencia', '2024-05-01', NULL, 16, 1),
-(20, '14', 'ejemplo reposo niveles ejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo niveles', '2024-05-17', NULL, 16, 1),
-(21, '5', 'funcion', '2024-05-01', NULL, 17, 1),
-(23, '11', 'asdkljaskldjaskldj', '2024-04-17', NULL, 16, 1),
-(24, '8', 'ya basta', '2024-05-16', '2024-05-24', 15, 1),
+(16, '20', 'esjemapsdl', '2024-05-01', '0000-00-00', 3, 1),
+(17, '10', 'dolencia', '2024-05-01', '0000-00-00', 16, 1),
+(20, '14', 'ejemplo reposo niveles ejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo niveles', '2024-05-17', '0000-00-00', 16, 1),
+(21, '5', 'funcion', '2024-05-01', '0000-00-00', 17, 1),
+(23, '11', 'asdkljaskldjaskldj', '2024-04-17', '0000-00-00', 16, 1),
+(24, '8', 'ya basta', '2024-05-16', '2024-05-24', 15, 3),
 (25, '14', 'asdfasdfasdfasdf', '2024-05-30', '2024-06-13', 1, 1),
 (26, '4', 'dfgsdfgsdfgs', '2024-06-01', '2024-06-05', 15, 1);
 
@@ -124,7 +126,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `usuario`, `pass_u`, `nivel`, `pregunta_uno`, `pregunta_dos`, `resp_uno`, `resp_dos`) VALUES
-(1, 'Alvarez', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', 'venezuela', 'venezuela', 'venezuela', 'venezuela'),
+(1, 'Alvarez', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', 'pais de origen', 'pais de origen', 'venezuela', 'venezuela'),
 (3, 'cesar', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', '', '', '', ''),
 (15, 'Adrian', 'e33498d494a8aaf97fe9de15ae6d0b8f965c9776b4bf80d13658c41d3df85bf0', '1', '', '', '', ''),
 (16, 'nacho', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '2', 'agua', 'agua', 'agua', 'agua'),
@@ -175,7 +177,7 @@ ALTER TABLE `info_per`
 -- AUTO_INCREMENT for table `medico`
 --
 ALTER TABLE `medico`
-  MODIFY `id_med` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_med` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `reposos`

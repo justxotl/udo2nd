@@ -49,7 +49,7 @@
 
                 foreach($campos as $values){
 
-                    echo '<option value="'.$values["id_med"].'">'.$values["nom_med"].'</option>';
+                    echo '<option value="'.$values["id_med"].'">'.$values["nom_med"].' '.$values["ape_med"].'</option>';
                     
                 }
 

@@ -81,7 +81,7 @@ class loginControl extends loginModel
             $_SESSION['nivel_UDO'] = $row['nivel'];
             $_SESSION['token_UDO'] = md5(uniqid(mt_rand(), true));
 
-            return header("Location: " . SERVERURL . "dashboard/");
+            return header("Location: " . SERVERURL . "perfil/");
         } else {
             echo '<script>
                 Swal.fire({
