@@ -86,13 +86,15 @@ include ('../config/aplicacion.php');
             <tr>
                 <th>Nombres del Médico:</th>
                 <th>Apellidos del Médico:</th>
+                <th>Cédula del Médico</th>
             </tr>
         </thead>
 
     <tbody>
         <tr>
-                <td><?php echo $campos['nombre_med']?></td>
-                <td><?php echo $campos['apellido_med']?></td>
+                <td><?php echo $campos['nom_med']?></td>
+                <td><?php echo $campos['ape_med']?></td>
+                <td><?php echo $campos['ced_med']?></td>
         </tr>
     </tbody>
 </table>

@@ -147,7 +147,7 @@ class usuarioControl extends usuarioModel
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "ERROR",
-                "Texto" => "Las contraseñas no coinciden",
+                "Texto" => "Las contraseñas no coinciden.",
                 "Tipo" => "error"
             ];
             echo json_encode($alerta);
@@ -162,7 +162,7 @@ class usuarioControl extends usuarioModel
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "ERROR",
-                "Texto" => "Como te las arreglaste para tener tantos privilegios",
+                "Texto" => "Valor de privilegios fuera de rango.",
                 "Tipo" => "error"
             ];
             echo json_encode($alerta);
@@ -191,7 +191,7 @@ class usuarioControl extends usuarioModel
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "ERROR",
-                "Texto" => "Error en el registro de los datos del Usuario",
+                "Texto" => "Error en el registro de los datos del Usuario.",
                 "Tipo" => "error"
             ];
         }

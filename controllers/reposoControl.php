@@ -15,12 +15,11 @@ class reposoControl extends reposoModel
         $inicio = $_POST['inicio'];
         $duracionrep = $_POST['duracion'];
         $patologiarep = $_POST['patologia'];
-        $nom_med = $_POST['nombres_doc'];
-        $ape_med = $_POST['apellidos_doc'];
+        $data_med = $_POST['medico'];
         $tipo_de_cuenta=$_POST['tipo_de_cuenta'];
 
         //Comprobar los campos vacios del formulario
-        if ($id == "" || $inicio == "" || $duracionrep == "" || $patologiarep == "" || $nom_med == "" || $ape_med == "") {
+        if ($id == "" || $inicio == "" || $duracionrep == "" || $patologiarep == "" || $data_med == "") {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "Ocurrio un error inesperado",
@@ -49,28 +48,6 @@ class reposoControl extends reposoModel
                 "Alerta" => "simple",
                 "Titulo" => "ocurrio un error inesperado",
                 "Texto" => "La patología no coincide con el formato de texto solicitado",
-                "Tipo" => "error"
-            ];
-            echo json_encode($alerta);
-            exit();
-        }
-
-        if (modeloPrincipal::verificarDatos("[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,35}", $nom_med)) {
-            $alerta = [
-                "Alerta" => "simple",
-                "Titulo" => "ERROR",
-                "Texto" => "El nombre no coincide con el formato solicitado.",
-                "Tipo" => "error"
-            ];
-            echo json_encode($alerta);
-            exit();
-        }
-        
-        if (modeloPrincipal::verificarDatos("[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,35}", $ape_med)) {
-            $alerta = [
-                "Alerta" => "simple",
-                "Titulo" => "ERROR",
-                "Texto" => "El apellido no coincide con el formato solicitado.",
                 "Tipo" => "error"
             ];
             echo json_encode($alerta);
@@ -115,6 +92,20 @@ class reposoControl extends reposoModel
             exit();
         }
 
+        // Comprobando la existencia del id del médico
+
+        $check_id_doc = modeloPrincipal::ejecutarConsultaSimple("SELECT id_med FROM medico WHERE id_med='$data_med'");
+        if ($check_id_doc->rowCount() <= 0) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR",
+                "Texto" => "El ID del médico no existe dentro del sistema.",
+                "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
         //Comprobando credenciales para actualizar datos
 
         if($tipo_de_cuenta=="propio"){
@@ -150,8 +141,7 @@ class reposoControl extends reposoModel
             "Inicio" => $inicio,
             "Duracion" => $duracionrep,
             "Patologia" => $patologiarep,
-            "Nommed" => $nom_med,
-            "Apemed" => $ape_med
+            "IDMed" => $data_med
         ];
 
         $agg_rep = reposoModel::modelAgregarReposo($Inf_reg_rep);

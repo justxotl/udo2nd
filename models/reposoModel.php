@@ -7,13 +7,12 @@ class reposoModel extends modeloPrincipal
     // Modelo para agregar reposos
     protected static function modelAgregarReposo($datos)
     {
-        $sql = modeloPrincipal::conexion()->prepare("INSERT INTO reposos (fecha_cert, duracion, patologia, nombre_med, apellido_med, id_user) VALUES(:Inicio, :Duracion, :Patologia, :Nombremed, :Apellidomed, :IDuser)");
+        $sql = modeloPrincipal::conexion()->prepare("INSERT INTO reposos (fecha_cert, duracion, patologia, id_user, id_doc) VALUES(:Inicio, :Duracion, :Patologia, :IDuser, :IDMed)");
         
         $sql->bindParam(":Inicio", $datos['Inicio']);
         $sql->bindParam(":Duracion", $datos['Duracion']);
         $sql->bindParam(":Patologia", $datos['Patologia']);
-        $sql->bindParam(":Nombremed", $datos['Nommed']);
-        $sql->bindParam(":Apellidomed", $datos['Apemed']);
+        $sql->bindParam(":IDMed", $datos['IDMed']);
         $sql->bindParam(":IDuser", $datos['ID']);
         $sql->execute();
         return $sql;
@@ -33,7 +32,7 @@ class reposoModel extends modeloPrincipal
      // Modelo datos reposo
     protected static function mostrarReposoModelo($id){
         
-        $sql=modeloPrincipal::conexion()->prepare("SELECT * FROM user, info_per, reposos WHERE id=id_usu AND id=id_user AND id_rep=:ID");
+        $sql=modeloPrincipal::conexion()->prepare("SELECT * FROM user, info_per, reposos, medico WHERE id=id_usu AND id=id_user AND id_med=id_doc AND id_rep=:ID");
         $sql->bindParam(":ID", $id);
         $sql->execute();
 

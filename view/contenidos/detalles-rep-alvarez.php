@@ -61,14 +61,19 @@ if ($_SESSION['nivel_UDO'] != 1) {
                     <textarea class="form-control" name="patologia-det" form="pdfdetalles" rows="5" disabled><?php echo $campos['patologia']?></textarea>
                 </div>
 
-                <div class="form-group col-6">
+                <div class="form-group col-4">
                     <label for="tlf_up">Nombres Médico:</label>
-                    <input type="text" class="form-control" name="nommed-det" value="<?php echo $campos['nombre_med']?>" disabled>
+                    <input type="text" class="form-control" name="nommed-det" value="<?php echo $campos['nom_med']?>" disabled>
                 </div>
                     
-                <div class="form-group col-6">
+                <div class="form-group col-4">
                     <label for="tlf_up">Apellidos Médico:</label>
-                    <input type="text" class="form-control" name="apemed-det" value="<?php echo $campos['apellido_med']?>" disabled>
+                    <input type="text" class="form-control" name="apemed-det" value="<?php echo $campos['ape_med']?>" disabled>
+                </div>
+
+                <div class="form-group col-4">
+                    <label for="tlf_up">Cédula Médico:</label>
+                    <input type="text" class="form-control" name="cedmed-det" value="<?php echo $campos['ced_med']?>" disabled>
                 </div>
                 
                 <div class="form-group col-6">
@@ -82,7 +87,7 @@ if ($_SESSION['nivel_UDO'] != 1) {
                 </div>
             </div>
             <br>
-            <a href="<?php echo SERVERURL ?>formatoreporte/reportes.php?id=<?php echo $pagina[1]?>" class="btn btn-primary btn-sm" title="pdf">Generar PDF</a>
+            <a href="<?php echo SERVERURL ?>formatoreporte/reportes.php?id=<?php echo $pagina[1]?>" class="btn btn-primary btn-sm" title="pdf" target="_blank">Generar PDF</a>
         </form>
     </div>
 </div>

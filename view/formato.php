@@ -9,9 +9,7 @@
         #sidebar {
             width: 15%;
             max-height: 140vh;
-
             background-color: rgb(12, 88, 137);
-            
         }
     </style>
 

@@ -16,7 +16,7 @@ $pagina = explode("/", $_GET['alvarez']);
 
                 <div class="form-group">
                     <label for="reset-pass" text-center>Contraseña:</label>
-                    <input type="text" class="form-control" name="reset-pass" placeholder="Escriba su nueva contraseña." required>
+                    <input type="password" class="form-control" name="reset-pass" placeholder="Escriba su nueva contraseña." autocomplete="off" required>
                 </div>
 
                 

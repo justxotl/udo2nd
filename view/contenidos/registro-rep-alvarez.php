@@ -33,15 +33,29 @@
                 <label for="patologia" class="form-label">Patología:</label>
                 <textarea class="form-control" id="patologia" name="patologia" required></textarea>
             </div>
-
+            
             <div class="mb-3">
-                <label for="nombres_doc">Nombres del Médico:</label>
-                <input type="text" class="form-control" name="nombres_doc" required>
-            </div>
+            <label for="">Médico:</label>
+                <select name="medico" class="form-control" required>
+                <option value="" disabled="" selected="">Seleccione un médico tratante.</option>
+                <?php 
+                
+                require_once "./controllers/medControl.php";
+                
+                $ins_med = new medControl();
+                $datos_med=$ins_med->medSelectControl();
 
-            <div class="mb-3">
-                <label for="apellidos_doc">Apellidos del Médico:</label>
-                <input type="text" class="form-control" name="apellidos_doc" required>
+                $campos= $datos_med->fetchAll();
+
+                foreach($campos as $values){
+
+                    echo '<option value="'.$values["id_med"].'">'.$values["nom_med"].'</option>';
+                    
+                }
+
+
+                ?>
+                </select>
             </div>
 
             

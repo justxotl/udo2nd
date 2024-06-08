@@ -32,7 +32,7 @@ $pagina = explode("/", $_GET['alvarez']);
             
             <div class="form-group">
                 <label for="respuno">Respuesta #1:</label>
-                <input type="text" class="form-control" name="respuno" required> 
+                <input type="text" class="form-control" name="respuno" autocomplete="off" required> 
             </div>
             
             <div class="form-group">
@@ -42,7 +42,7 @@ $pagina = explode("/", $_GET['alvarez']);
             
             <div class="form-group">
                 <label for="respdos">Respuesta #2:</label>
-                <input type="text" class="form-control" name="respdos" required>
+                <input type="text" class="form-control" name="respdos" autocomplete="off" required>
             </div>
 
             
