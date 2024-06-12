@@ -458,4 +458,10 @@ class reposoControl extends reposoModel
         echo json_encode($alerta);
     }
 
+    public function contarReposoControl(){
+
+        return reposoModel::contarReposoModel();
+
+    }
 }
+

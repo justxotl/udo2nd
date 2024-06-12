@@ -220,6 +220,7 @@ class usuarioControl extends usuarioModel
             <tr>
                 <th>Nombres</th>
                 <th>Apellidos</th>
+                <th>Usuario</th>
                 <th>Cédula</th>
                 <th>Teléfono</th>
                 <th>Nivel</th>
@@ -234,6 +235,7 @@ class usuarioControl extends usuarioModel
                 <tr>
                 <td>' . $rows['nombre_pers'] . '</td>
                 <td>' . $rows['apellido_pers'] . '</td>
+                <td>' . $rows['usuario'] . '</td>
                 <td>' . $rows['cedula_pers'] . '</td>
                 <td>' . $rows['tlf_pers'] . '</td>
                 <td>' . $rows['nivel'] . '</td>
@@ -279,7 +281,7 @@ class usuarioControl extends usuarioModel
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"ERROR",
-                "Texto"=>" Ahora te sientas y me explicas con método científico cómo hiciste esa vaina.",
+                "Texto"=>" Ahora te sientas y me explicas con método científico cómo hiciste eso.",
                 "Tipo"=>"error"
             ];
             echo json_encode($alerta);
@@ -292,14 +294,14 @@ class usuarioControl extends usuarioModel
             $alerta=[
                 "Alerta"=>"recargar",
                 "Titulo"=>"Usuario Eliminado",
-                "Texto"=>"Siyuleirer mi pana.",
+                "Texto"=>"El usuario ha sido eliminado con éxito.",
                 "Tipo"=>"success"
             ];
         }else{
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"ERROR",
-                "Texto"=>"Tas fuera de ranking",
+                "Texto"=>"Ha ocurrido un error en la eliminación.",
                 "Tipo"=>"error"
             ];
             
@@ -351,7 +353,7 @@ class usuarioControl extends usuarioModel
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "ERROR",
-                "Texto" => "Por favor rellene el formulario en su totalidad",
+                "Texto" => "Por favor rellene el formulario en su totalidad.",
                 "Tipo" => "error"
             ];
             echo json_encode($alerta);
@@ -450,14 +452,14 @@ class usuarioControl extends usuarioModel
             $alerta = [
                 "Alerta" => "recargar",
                 "Titulo" => "Datos actualizados",
-                "Texto" => "Los Datos han sido actualizados",
+                "Texto" => "Los datos del usuario han sido actualizados.",
                 "Tipo" => "success"
             ];
         } else {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "ERROR",
-                "Texto" => "Los datos no se han podido actualizar",
+                "Texto" => "Los datos no se han podido actualizar.",
                 "Tipo" => "error"
             ];
         }
@@ -573,5 +575,11 @@ class usuarioControl extends usuarioModel
             ];
         }
         echo json_encode($alerta);
+    }
+
+    public function contarUsuarioControl(){
+
+        return usuarioModel::contarUsuarioModel();
+
     }
 }

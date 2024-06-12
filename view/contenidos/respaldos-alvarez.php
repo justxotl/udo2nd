@@ -14,18 +14,19 @@
 
 	<div class="text-center col-12">
 
-            <form class=" " action="<?php echo SERVERURL?>ajax/ajaxRest.php" method="POST" data-form="default">                
-                <button type="submit" class="btn btn-primary col-4" name="respaldo" style="padding: 15px; font-size: 150%; margin: 0px 20px 20px 20px">Realizar copia de seguridad</button>
+            <form class=" FormularioAjax" action="<?php echo SERVERURL?>ajax/ajaxRest.php" method="POST" data-form="respaldo">
+                <input type="hidden" name="respaldo" value="">
+                <button type="submit" class="btn btn-primary col-4" style="padding: 20px; font-size: 150%; margin: 20px">Realizar copia de seguridad</button>
             </form>
 
         
-        <form class="registro " action="<?php echo SERVERURL?>ajax/ajaxRest.php" method="POST" data-form="">
+        <form class="registro FormularioAjax" style="padding: 70px; margin-top: 20px;" action="<?php echo SERVERURL?>ajax/ajaxRest.php" method="POST" data-form="">
                 <div class="text-center">
                 <h3>Selecciona un punto de restauración</h3>
                 </div><br>
         
             <div class="selector">
-                <select name="restaurar" required>
+                <select name="restaurar" size="5" required>
                     <option value="" disabled="" selected="">Selecciona un punto de restauración</option>
                     <?php
                     $ruta = 'backup/';
@@ -50,7 +51,7 @@
                     ?>
                 </select>
             </div>
-            <button class="btn btn-primary" style="margin: 15px;" type="submit" >Restaurar</button>
+            <button class="btn btn-primary btn-block" style="margin: 20px 0px;" type="submit" >Restaurar</button>
         </form>
     </div>
 </body>

@@ -34,9 +34,9 @@
                 <textarea class="form-control" id="patologia" name="patologia" required></textarea>
             </div>
             
-            <div class="mb-3">
+            <div class="mb-3 select-wrap">
             <label for="">Médico:</label>
-                <select name="medico" class="form-control" required>
+                <select name="medico" class="form-control" id="selectbox" required>
                 <option value="" disabled="" selected="">Seleccione un médico tratante.</option>
                 <?php 
                 
@@ -49,7 +49,7 @@
 
                 foreach($campos as $values){
 
-                    echo '<option value="'.$values["id_med"].'">'.$values["nom_med"].' '.$values["ape_med"].'</option>';
+                    echo '<option value="'.$values["id_med"].'">'.$values["nom_med"].' '.$values["ape_med"].' ('.$values["ced_med"].')</option>';
                     
                 }
 

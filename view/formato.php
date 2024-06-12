@@ -3,12 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title><?php echo COMPANY ?></title>
+    <title>Registro de Reposos <?php echo COMPANY ?></title>
+    <link rel="icon" href="<?php echo SERVERURL ?>view/img/logo2.png">
     <?php include "./view/inc/estilos.php"; ?>
     <style>
         #sidebar {
             width: 17%;
-            max-height: 140vh;
+            min-height: 100vh;
             background-color: rgb(12, 88, 137);
         }
     </style>
@@ -16,7 +17,6 @@
 </head>
 
 <body >
-        <!--- aqui --->
         <?php include "./view/inc/cabezera.php" ;?>
         
         <div class="flex">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2024 at 11:29 PM
+-- Generation Time: Jun 12, 2024 at 04:06 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,10 +42,9 @@ CREATE TABLE `info_per` (
 
 INSERT INTO `info_per` (`id_info`, `cedula_pers`, `nombre_pers`, `apellido_pers`, `tlf_pers`, `id_usu`) VALUES
 (1, '87654321', 'Americio José', 'Alvarez Cárdenas', '04126973654', 1),
-(3, '33333333', 'Anastacia', 'Carmen', '04444444444', 3),
+(3, '71981423', 'Anastacia', 'Carmen', '04126987365', 3),
 (12, '16958789', 'Adrian', 'Manuel', '04167984369', 15),
-(13, '64597836', 'Ignacio', 'Aponte', '11111111111', 16),
-(14, '78787878', 'este', 'otro', '04561231234', 17);
+(13, '64597836', 'Ignacio', 'Aponte', '04146765179', 16);
 
 -- --------------------------------------------------------
 
@@ -65,9 +64,7 @@ CREATE TABLE `medico` (
 --
 
 INSERT INTO `medico` (`id_med`, `ced_med`, `nom_med`, `ape_med`) VALUES
-(1, '10101010', 'asdklñjasdlk', 'dlajsdlkajksld'),
-(3, '12121212', 'sdfgklñsdj', 'askldjalsjdj'),
-(5, '45645646', 'eduardo jose', 'cerezo mejias');
+(5, '20212223', 'Antonio Armando', 'Contreras Frías');
 
 -- --------------------------------------------------------
 
@@ -82,7 +79,7 @@ CREATE TABLE `reposos` (
   `fecha_cert` date NOT NULL,
   `fecha_ven` date DEFAULT NULL,
   `id_user` int(11) NOT NULL,
-  `id_doc` int(11) DEFAULT NULL
+  `id_doc` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -90,19 +87,21 @@ CREATE TABLE `reposos` (
 --
 
 INSERT INTO `reposos` (`id_rep`, `duracion`, `patologia`, `fecha_cert`, `fecha_ven`, `id_user`, `id_doc`) VALUES
-(6, '15', 'ASKDJALKSDJ AKLSDJALKSDJALSDJA LSDJASLDKASJDALSDKJA SDLAKJSDLASDKJALSDKAJSDLAKSJDALSDKJASDLKAJSDLAKSDJALSKDJALSDKJASLDKAJSDLAKJSDLAKSDJALSKDJALSDKJASLDKJASDLKAJSDLAKJSDLAKSJDLAKSJDLAKSJDKALJSDLKAJSLDJASDLAKJSDLASDKJALSDKAJSDLAKSJDALSDKJASDLKAJSDLAKSDJALSKDJALSDKJASLDKAJSDLAKJSDLAKSDJALSKDJALSDKJASLDKJASDLKAJSDLAKJSDLAKSJDLAKSJDLAKSJDKALJSDLKAJSLDJASDLAKJSDLASDKJALSDKAJSDLAKSJDALSDKJASDLK', '2024-05-26', '2024-06-10', 1, 1),
-(9, '15', 'gripe', '2024-04-01', '2024-04-08', 1, 1),
-(12, '18', 'ysdgsy', '2024-05-26', '2024-06-13', 3, 1),
-(13, '7', 'fractura fracturafracturafracturafracturafracturafracturafracturafracturafracturafracturafracturafracturafracturafracturafracturafractura', '2024-05-02', '2024-05-09', 1, 1),
-(15, '3', 'testeo', '2024-05-25', '2024-05-28', 1, 1),
-(16, '20', 'esjemapsdl', '2024-05-01', '0000-00-00', 3, 1),
-(17, '10', 'dolencia', '2024-05-01', '0000-00-00', 16, 1),
-(20, '14', 'ejemplo reposo niveles ejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo nivelesejemplo reposo niveles', '2024-05-17', '0000-00-00', 16, 1),
-(21, '5', 'funcion', '2024-05-01', '0000-00-00', 17, 1),
-(23, '11', 'asdkljaskldjaskldj', '2024-04-17', '0000-00-00', 16, 1),
-(24, '8', 'ya basta', '2024-05-16', '2024-05-24', 15, 3),
-(25, '14', 'asdfasdfasdfasdf', '2024-05-30', '2024-06-13', 1, 1),
-(26, '4', 'dfgsdfgsdfgs', '2024-06-01', '2024-06-05', 15, 1);
+(6, '15', 'ENFERMEDAD DE EJEMPLO', '2024-05-26', '2024-06-10', 1, 5),
+(9, '15', 'GRIPE', '2024-04-01', '2024-04-08', 1, 5),
+(12, '18', 'CEFALEAS EN RACIMOS', '2024-05-26', '2024-06-13', 3, 5),
+(13, '7', 'FRACTURA', '2024-05-02', '2024-05-09', 1, 5),
+(15, '3', 'HEMATOMA', '2024-05-25', '2024-05-28', 1, 5),
+(16, '20', 'REPOSO POR PRECAUCIÓN', '2024-05-01', NULL, 3, 5),
+(17, '10', 'DOLENCIA', '2024-05-01', NULL, 16, 5),
+(20, '14', 'PATOLOGIA DE EJEMPLO', '2024-05-17', NULL, 16, 5),
+(23, '11', 'REACCIÓN ALÉRGICA', '2024-04-17', NULL, 16, 5),
+(24, '8', 'FRACTURA DE TIBIA', '2024-05-16', '2024-05-24', 15, 5),
+(25, '14', 'DOLOR CERVICAL', '2024-05-30', '2024-06-13', 1, 5),
+(26, '4', 'CONJUNTIVITIS', '2024-06-01', '2024-06-05', 15, 5),
+(32, '9', 'GASTRITIS', '2024-06-21', NULL, 15, 5),
+(33, '21', 'MERECIDO DESCANSO', '2024-06-11', NULL, 1, 5),
+(34, '8', 'LUXACIÓN', '2024-06-10', '2024-06-18', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -126,11 +125,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `usuario`, `pass_u`, `nivel`, `pregunta_uno`, `pregunta_dos`, `resp_uno`, `resp_dos`) VALUES
-(1, 'Alvarez', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', 'pais de origen', 'pais de origen', 'venezuela', 'venezuela'),
+(1, 'Alvarez', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', 'pais de origen', 'fruta preferida', 'venezuela', 'pera'),
 (3, 'cesar', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', '', '', '', ''),
 (15, 'Adrian', 'e33498d494a8aaf97fe9de15ae6d0b8f965c9776b4bf80d13658c41d3df85bf0', '1', '', '', '', ''),
-(16, 'nacho', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '2', 'agua', 'agua', 'agua', 'agua'),
-(17, 'este', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', '', '', '', '');
+(16, 'Nacho', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '2', 'Nombre de Mascota', 'Mes favorito', 'Estela', 'Enero');
 
 --
 -- Indexes for dumped tables
@@ -177,13 +175,13 @@ ALTER TABLE `info_per`
 -- AUTO_INCREMENT for table `medico`
 --
 ALTER TABLE `medico`
-  MODIFY `id_med` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_med` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `reposos`
 --
 ALTER TABLE `reposos`
-  MODIFY `id_rep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_rep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -206,7 +204,7 @@ ALTER TABLE `info_per`
 --
 ALTER TABLE `reposos`
   ADD CONSTRAINT `reposos_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reposos_ibfk_2` FOREIGN KEY (`id_doc`) REFERENCES `medico` (`id_med`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `reposos_ibfk_2` FOREIGN KEY (`id_doc`) REFERENCES `medico` (`id_med`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

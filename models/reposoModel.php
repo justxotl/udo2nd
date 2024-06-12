@@ -52,4 +52,13 @@ class reposoModel extends modeloPrincipal
 
     }
 
+    protected static function contarReposoModel(){
+
+        $sql = modeloPrincipal::conexion()->prepare("SELECT id_rep FROM reposos");
+        $sql->execute();
+        
+        return $sql;
+    
+    }
+
 }

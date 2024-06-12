@@ -18,7 +18,7 @@ $pagina = explode("/", $_GET['alvarez']);
                 <div class="text-center">
                     <h2>Preguntas de Recuperación</h2>
                 </div>
-        <div class="row ">
+        <div class="row">
             <div class="col-12 form-recu">
     
         <form action="" method="POST"  class="">
@@ -47,7 +47,7 @@ $pagina = explode("/", $_GET['alvarez']);
 
             
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary" name="submit">Actualizar</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Validar</button>
                 </div>
             
             

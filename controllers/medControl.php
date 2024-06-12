@@ -191,7 +191,6 @@ class medControl extends medModel{
                 "Tipo"=>"error"
             ];
         }
-
         echo json_encode($alerta);
 
     }
@@ -206,4 +205,9 @@ class medControl extends medModel{
     }
     /* Fin de del controlador */
 
+    public function contarMedicoControl(){
+
+        return medModel::contarMedicoModel();
+
+    }
 }

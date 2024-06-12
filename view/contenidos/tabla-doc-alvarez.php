@@ -5,7 +5,7 @@ if ($_SESSION['nivel_UDO'] != 1) {
 }
 ?>
 
-<h3 class="text-center mt-2">Tabla de Reposos</h3>
+<h3 class="text-center mt-2">Tabla de Médicos</h3>
 <div class="tabla-premium">
 <?php
 

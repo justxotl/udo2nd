@@ -85,4 +85,13 @@ class usuarioModel extends modeloPrincipal
 
         return $sql;
     }
+
+    protected static function contarUsuarioModel(){
+
+        $sql = modeloPrincipal::conexion()->prepare("SELECT id FROM user");
+        $sql->execute();
+        
+        return $sql;
+    
+    }
 }

@@ -30,6 +30,8 @@ function enviar_formulario_ajax(e) {
         texto_alerta = "Se eliminará el término de busqueda y tendrás que escribir uno nuevo.";
     } else if (tipo === "consignar") {
         texto_alerta = "Se realizará la consignación del reposo.";
+    } else if (tipo === "respaldo") {
+        texto_alerta = "Se creará el respaldo de Base de Datos..";
     } else {
         texto_alerta = "¿Quieres realizar la operación solicitada?"
     }

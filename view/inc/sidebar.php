@@ -3,7 +3,7 @@
     <div class="list-group">
 
     <div>
-      <a href="<?php echo SERVERURL ?>perfil/" class="list-group-item list-group-item-action text-light"><i class="fa fa-user mr-3"></i>Mi Perfil
+      <a href="<?php echo SERVERURL ?>perfil/" class="list-group-item list-group-item-action text-light"><i class="fa fa-user mr-3"></i>Perfil
         </a>
         
         <a class="list-group-item list-group-item-action text-light" data-bs-toggle="collapse" href="#collapseRegistro" role="button" aria-expanded="false" aria-controls="collapseRegistro"><i class="fa fa-file-pen mr-3"></i>Registrar
@@ -51,9 +51,10 @@
         </div>
       
         <?php if ($_SESSION['nivel_UDO'] == 1) { ?>
-          <a href="<?php echo SERVERURL ?>respaldos/" class="list-group-item list-group-item-action text-light"><i class="fa fa-database mr-3"></i>Respaldo y Restauración
-          </a>
+          <a href="<?php echo SERVERURL ?>respaldos/" class="list-group-item list-group-item-action text-light"><i class="fa fa-database mr-3"></i>Respaldo y Restauración</a>
         <?php } ?>
+
+        <a href="<?php echo SERVERURL ?>manual/manual_de_usuario.pdf" target="_blank" class="list-group-item list-group-item-action text-light"><i class="fa fa-book-open-reader mr-3"></i>Manual de Uso</a>
       
         <a href="" class="list-group-item list-group-item-action text-light btnCerrar_sesion"><i class="fa fa-door-open mr-3"></i>Cerrar Sesión
           </a>

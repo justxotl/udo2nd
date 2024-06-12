@@ -29,4 +29,13 @@ class medModel extends modeloPrincipal{
 
     }
 
+    protected static function contarMedicoModel(){
+
+        $sql = modeloPrincipal::conexion()->prepare("SELECT id_med FROM medico");
+        $sql->execute();
+        
+        return $sql;
+    
+    }
+
 }

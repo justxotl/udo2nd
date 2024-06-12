@@ -1,10 +1,9 @@
-
 <div class="containerd-fluid">
-        <div class="row justify-content-center ingreso">
-            <h3 class="titulo-login text-center">Aplicación para Registro de Reposos</h3>
+        <div class="justify-content-center ingreso">
+            <h3 class="titulo-login text-center">Aplicación Web para Registro de Reposos</h3>
             <br>
             <br>
-            <div class="col-md-6">
+            <div class="mt-4">
                 <form class="login" method="post" action="">
                     <div class="form-group">
                         <label for="username">Usuario:</label>
@@ -15,7 +14,9 @@
                         <input type="password" class="form-control" name="password_lg" required>
                     </div>
                     <button type="submit" id="btlogin" class="btn btn-primary btn-block">Iniciar sesión</button>
-                    <a href="<?php echo SERVERURL ?>check-user/">¿Ha olvidado su contraseña?</a>
+                    <div class="text-center mt-2">
+                        <a href="<?php echo SERVERURL ?>check-user/">¿Ha olvidado su contraseña?</a>
+                    </div>
                 </form>
             </div>
         </div>
