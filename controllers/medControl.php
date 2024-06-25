@@ -62,7 +62,7 @@ class medControl extends medModel
             exit();
         }
 
-        if (modeloPrincipal::verificarDatos("[0-9\-]{6,8}", $certmed)) {
+        if (modeloPrincipal::verificarDatos("[a-zA-Z0-9\-]{6,15}", $certmed)) {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "ERROR",
