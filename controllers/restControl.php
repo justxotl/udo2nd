@@ -32,6 +32,7 @@ class restControl extends restModel
             $sql .= 'USE ' . BD . ";\n\n";;
 
             foreach ($tables as $table) {
+
                 $result = modeloPrincipal::ejecutarConsultaSimple('SELECT * FROM ' . $table);
 
                 if ($result) {
@@ -67,15 +68,23 @@ class restControl extends restModel
             }
 
             if ($error == 1) {
-                echo 'Ocurrio un error inesperado al crear la copia de seguridad';
+
+                $alert = [
+                    "Alerta" => "simple",
+                    "Titulo" => "Respaldo Fallido",
+                    "Texto" => "Ha ocurrido un error en el respaldo de los datos.",
+                    "Tipo" => "error"
+                ];
+                echo json_encode($alert);
             } else {
+
                 chmod(BACKUP_PATH, 0777);
                 $sql .= 'SET FOREIGN_KEY_CHECKS=1;';
                 $handle = fopen(BACKUP_PATH . $DataBASE, 'w+');
                 if (fwrite($handle, $sql)) {
                     fclose($handle);
                     $alert = [
-                        "Alerta" => "simple",
+                        "Alerta" => "recargar",
                         "Titulo" => "Respaldo Exitoso",
                         "Texto" => "Los datos han sido respaldados correctamente.",
                         "Tipo" => "success"
@@ -90,12 +99,16 @@ class restControl extends restModel
                     ];
                     echo json_encode($alert);
                 }
-                
             }
         } else {
-            echo 'Ocurrio un error inesperado';
+            $alert = [
+                "Alerta" => "simple",
+                "Titulo" => "Respaldo Fallido",
+                "Texto" => "Ha ocurrido un error en el respaldo de los datos.",
+                "Tipo" => "error"
+            ];
+            echo json_encode($alert);
         }
-        
     }
 
     public function restaurarBaseControl()

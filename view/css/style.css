@@ -192,3 +192,13 @@ margin:auto;
 .titulopdf{
     justify-content: center;
 }
+
+input[type="file"]::file-selector-button {
+    background-color: #576dcf;
+    color: white;
+    padding: 1px 3px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

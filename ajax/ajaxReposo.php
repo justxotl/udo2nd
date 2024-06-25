@@ -2,7 +2,7 @@
 $peticionAjax = true;
 require_once "../config/aplicacion.php";
 
-if (isset($_POST['id_usuario_rep_reg']) || isset($_POST['borrar_reg_rep']) || isset($_POST['consignar_rep'])) {
+if (isset($_POST['id_usuario_rep_reg']) || isset($_POST['borrar_reg_rep']) || isset($_POST['borrar_foto_rep']) || isset($_POST['consignar_rep'] )) {
 
     // Instancia al controlador     
     require_once "../controllers/reposoControl.php";
@@ -14,7 +14,7 @@ if (isset($_POST['id_usuario_rep_reg']) || isset($_POST['borrar_reg_rep']) || is
     }
 
    // Eliminar Reposo 
-    if (isset($_POST['borrar_reg_rep'])) {
+    if (isset($_POST['borrar_reg_rep']) && isset($_POST['borrar_foto_rep'])) {
     echo $ins_reposo->borrarReposoControl();
     }
 

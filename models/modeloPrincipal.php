@@ -12,6 +12,7 @@ class modeloPrincipal
     {
         $conexion = new PDO(SGBD, USER, PASS);
         $conexion->exec("SET CHARACTER SET utf8");
+        
         return $conexion;
     }
 

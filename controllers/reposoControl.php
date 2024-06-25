@@ -16,7 +16,7 @@ class reposoControl extends reposoModel
         $duracionrep = $_POST['duracion'];
         $patologiarep = $_POST['patologia'];
         $data_med = $_POST['medico'];
-        $tipo_de_cuenta=$_POST['tipo_de_cuenta'];
+        $tipo_de_cuenta = $_POST['tipo_de_cuenta'];
 
         //Comprobar los campos vacios del formulario
         if ($id == "" || $inicio == "" || $duracionrep == "" || $patologiarep == "" || $data_med == "") {
@@ -32,7 +32,7 @@ class reposoControl extends reposoModel
 
         // verificando si los datos cumplen con el formato
 
-        if (modeloPrincipal::verificarDatos("[0-9]{1,2}", $duracionrep) ) {
+        if (modeloPrincipal::verificarDatos("[0-9]{1,2}", $duracionrep)) {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "ocurrio un error inesperado",
@@ -56,7 +56,7 @@ class reposoControl extends reposoModel
 
         //Comprobando duración del reposo
 
-        if ($duracionrep < 3 ) {
+        if ($duracionrep < 3) {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "ATENCIÓN",
@@ -66,8 +66,8 @@ class reposoControl extends reposoModel
             echo json_encode($alerta);
             exit();
         }
-        
-        if ($duracionrep > 21 ) {
+
+        if ($duracionrep > 21) {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "ATENCIÓN",
@@ -108,32 +108,60 @@ class reposoControl extends reposoModel
 
         //Comprobando credenciales para actualizar datos
 
-        if($tipo_de_cuenta=="propio"){
+        if ($tipo_de_cuenta == "propio") {
             $check_cuenta = modeloPrincipal::ejecutarConsultaSimple("SELECT id FROM user WHERE id ='$id'");
-        }else{
+        } else {
             session_start(['name' => 'UDO']);
-            if($_SESSION['nivel_UDO']!=1){    
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"ERROR",
-                    "Texto"=>"No cuentas con los privilegios para realizar esta acción.",
-                    "Tipo"=>"error"
+            if ($_SESSION['nivel_UDO'] != 1) {
+                $alerta = [
+                    "Alerta" => "simple",
+                    "Titulo" => "ERROR",
+                    "Texto" => "No cuentas con los privilegios para realizar esta acción.",
+                    "Tipo" => "error"
                 ];
                 echo json_encode($alerta);
                 exit();
             }
-            $id_admin=$_SESSION['id_UDO'];
-            $check_cuenta=modeloPrincipal::ejecutarConsultaSimple("SELECT id FROM user WHERE id ='$id_admin'");
+            $id_admin = $_SESSION['id_UDO'];
+            $check_cuenta = modeloPrincipal::ejecutarConsultaSimple("SELECT id FROM user WHERE id ='$id_admin'");
         }
-            if($check_cuenta->rowCount()<=0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"ERROR",
-                "Texto"=>"",
-                "Tipo"=>"error"
+        if ($check_cuenta->rowCount() <= 0) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR",
+                "Texto" => "",
+                "Tipo" => "error"
             ];
             echo json_encode($alerta);
             exit();
+        }
+
+        /* Verificando si existe el directorio local */
+        $dirLocal = "image_prueba";
+        if (!file_exists($dirLocal)) {
+            mkdir($dirLocal, 0777, true);
+        }
+        $miDir = opendir($dirLocal);
+
+        if (isset($_POST['id_usuario_rep_reg']) && isset($_FILES['prueba'])) {
+
+            $fileName = $_FILES['prueba']['name'];
+            $sourceFoto = $_FILES['prueba']['tmp_name'];
+            $sizeFoto = $_FILES['prueba']['size'];
+            $restrictamano = "500";
+
+            if ((($sizeFoto / 1024) / 1024) <= $restrictamano) {
+
+                /**Renombrando cada foto que llega desde el formulario */
+                $nuevoNombreFile    = substr(md5(uniqid(rand())), 0, 15);
+                $extension_foto     = pathinfo($fileName, PATHINFO_EXTENSION);
+                $nombreFoto         = $nuevoNombreFile . '_' . $id . '.' . $extension_foto;
+
+                $resultadoFotos     = $dirLocal . '/' . $nombreFoto;
+
+                // Mover archivo a una ubicación permanente
+                move_uploaded_file($sourceFoto, $resultadoFotos);
+            }
         }
 
         $Inf_reg_rep = [
@@ -141,7 +169,8 @@ class reposoControl extends reposoModel
             "Inicio" => $inicio,
             "Duracion" => $duracionrep,
             "Patologia" => $patologiarep,
-            "IDMed" => $data_med
+            "IDMed" => $data_med,
+            "Foto" => $nombreFoto
         ];
 
         $agg_rep = reposoModel::modelAgregarReposo($Inf_reg_rep);
@@ -180,7 +209,7 @@ class reposoControl extends reposoModel
         $total = $conexion->query("SELECT FOUND_ROWS()");
 
         $total = (int) $total->fetchColumn();
-        
+
         $tabla = '
         <table id="example" class="table table-striped table-bordered container">
         <thead>
@@ -194,36 +223,37 @@ class reposoControl extends reposoModel
         </thead>
         <tbody>
         ';
-        ?>
+    ?>
         <style>
-        table{
-            table-layout: fixed;
-        }
-        td{
-            word-wrap: normal;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+            table {
+                table-layout: fixed;
+            }
+
+            td {
+                word-wrap: normal;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         </style>
         <?php
         if ($total >= 1) {
             foreach ($datos as $rows) {
-                
-                $id=$rows['id'];
-                $reposo=modeloPrincipal::ejecutarConsultaSimple("SELECT * FROM reposos WHERE id_user='$id'");
-                $Nreposo=$reposo->rowCount();
-                
+
+                $id = $rows['id'];
+                $reposo = modeloPrincipal::ejecutarConsultaSimple("SELECT * FROM reposos WHERE id_user='$id'");
+                $Nreposo = $reposo->rowCount();
+
                 $tabla .= '
                 <tr>
                 <td>' . $rows['nombre_pers'] . '</td>
                 <td>' . $rows['apellido_pers'] . '</td>
                 <td>' . $rows['cedula_pers'] . '</td>
-                <td>' .$Nreposo. '</td>
+                <td>' . $Nreposo . '</td>
                 
 
                 <td class="d-flex justify-content-center">
 
-                <a href="'.SERVERURL.'rep-individual/'.$rows['id'].'/" class="btn btn-info btn-sm" title="Ver Reposos"><i class="fa-solid fa-eye"></i></a>
+                <a href="' . SERVERURL . 'rep-individual/' . $rows['id'] . '/" class="btn btn-info btn-sm" title="Ver Reposos"><i class="fa-solid fa-eye"></i></a>
 
 
                 </td>
@@ -238,14 +268,13 @@ class reposoControl extends reposoModel
         </table>
         ';
         return $tabla;
-
     }
 
     // Controlador ver reposos según la persona
     public function tablaRepososIndv($id)
     {
-        
-        $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM reposos INNER JOIN user INNER JOIN info_per WHERE id_user = id AND id_user = id_usu AND id='$id'";
+
+        $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM reposos INNER JOIN user INNER JOIN info_per INNER JOIN fotosrep WHERE id_rep = id_re AND id_user = id AND id_user = id_usu AND id='$id'";
 
         $conexion = modeloPrincipal::conexion();
 
@@ -274,35 +303,37 @@ class reposoControl extends reposoModel
         ';
         ?>
         <style>
-        table{
-            table-layout: fixed;
-        }
-        td{
-            word-wrap: normal; 
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
+            table {
+                table-layout: fixed;
+            }
+
+            td {
+                word-wrap: normal;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
         </style>
-        <?php
+    <?php
+
         if ($total >= 1) {
             foreach ($datos as $rows) {
-                
-                $estado="";
-                if($rows['fecha_ven']==NULL){
-                    $estado='<div class="btn btn-sm btn-primary" style="width: 100%">SIN CONSIGNAR</div>';
-                }else{
-                    
+
+                $estado = "";
+                if ($rows['fecha_ven'] == NULL) {
+                    $estado = '<div class="btn btn-sm btn-primary" style="width: 100%">SIN CONSIGNAR</div>';
+                } else {
+
                     $fecha_actual = new DateTime(date('Y-m-d'));
                     $fecha_final = new DateTime($rows['fecha_ven']);
                     $dias = $fecha_actual->diff($fecha_final)->format('%r%a');
-                    
+
                     if ($dias <= 0) {
-                        $estado='<div class="btn btn-sm btn-danger" style="width: 100%">VENCIDO</div>';
-                    } elseif ($dias >= 1 && $dias <= 3) { 
-                        $estado='<div class="btn btn-sm btn-warning" style="width: 100%">FALTAN '.$dias.' DÍAS</div>';
-                    }else{
-                        $estado='<div class="btn btn-sm btn-success" style="width: 100%">VIGENTE</div>';
+                        $estado = '<div class="btn btn-sm btn-danger" style="width: 100%">VENCIDO</div>';
+                    } elseif ($dias >= 1 && $dias <= 3) {
+                        $estado = '<div class="btn btn-sm btn-warning" style="width: 100%">FALTAN ' . $dias . ' DÍAS</div>';
+                    } else {
+                        $estado = '<div class="btn btn-sm btn-success" style="width: 100%">VIGENTE</div>';
                     }
                 }
 
@@ -317,9 +348,10 @@ class reposoControl extends reposoModel
                 <td class="text-center">' . $estado . '</td>
 
                 <td class="d-flex justify-content-center">
-                <form class=" FormularioAjax" action="'.SERVERURL.'ajax/ajaxReposo.php" method="POST" data-form="delete">
+                <form class=" FormularioAjax" action="' . SERVERURL . 'ajax/ajaxReposo.php" method="POST" data-form="delete">
                 
-                <input type="hidden" name="borrar_reg_rep" value="'.$rows['id_rep'].'">
+                <input type="hidden" name="borrar_reg_rep" value="' . $rows['id_rep'] . '">
+                <input type="hidden" name="borrar_foto_rep" value="' . $rows['foto'] . '">
                 
                 <button type="submit" class="btn btn-sm btn-danger" title="Borrar"><i class="fa-solid fa-trash-alt"></i></button>
 
@@ -327,22 +359,20 @@ class reposoControl extends reposoModel
 
                 &nbsp;
 
-                <a href="'.SERVERURL.'detalles-rep/'.$rows['id_rep'].'/" class="btn btn-primary btn-sm" title="Detalles"><i class="fa-solid fa-search-plus"></i></a>
-
+                <a href="' . SERVERURL . 'detalles-rep/' . $rows['id_rep'] . '/" class="btn btn-primary btn-sm" title="Detalles"><i class="fa-solid fa-search-plus"></i></a>
+                
                 &nbsp;
 
-                <form class=" FormularioAjax" action="'.SERVERURL.'ajax/ajaxReposo.php" method="POST" data-form="consignar">
+                <form class=" FormularioAjax" action="' . SERVERURL . 'ajax/ajaxReposo.php" method="POST" data-form="consignar">
                 
-                <input type="hidden" name="consignar_rep" value="'.$rows['id_rep'].'">
+                <input type="hidden" name="consignar_rep" value="' . $rows['id_rep'] . '">
                 
                 <button type="submit" class="btn btn-sm btn-success" title="Consignar"><i class="fa-solid fa-check-double"></i></button>
 
                 </form>
 
                 </tr>';
-                
             }
-            
         } else {
             $tabla .= '<tr> <td colspan="9">No hay registros en el sistema</td> </tr>';
         }
@@ -352,74 +382,103 @@ class reposoControl extends reposoModel
         </table>
         ';
         return $tabla;
-
     }
 
     public static function mostrarReposoControl($id)
-    {        
-        $id= $id;
+    {
+        $id = $id;
         return reposoModel::mostrarReposoModelo($id);
-    
     }
 
     //Controlador para eliminar un usuario
     public function borrarReposoControl()
     {
         //recibiendo el id del reposo
-        $id_rep= $_POST['borrar_reg_rep'];
 
-        // comprobando si el reposo existe en la base de datos
-        
-        $revisarReposo=modeloPrincipal::ejecutarConsultaSimple("SELECT id_rep FROM reposos WHERE id_rep='$id_rep'");
-        if($revisarReposo->rowCount()<=0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"ERROR",
-                "Texto"=>" Ahora te sientas y me explicas mediante método científico cómo hiciste eso.",
-                "Tipo"=>"error"
+        $id_rep = $_POST['borrar_reg_rep'];
+        $foto = $_POST['borrar_foto_rep'];
+
+        $img_dir = "../ajax/image_prueba/";
+
+        chmod($img_dir, 0777);
+
+        if (is_file($img_dir . $foto)) {
+
+            chmod($img_dir . $foto, 0777);
+
+            if (!unlink($img_dir . $foto)) {
+
+                $alerta = [
+                    "Alerta" => "simple",
+                    "Titulo" => "ERROR",
+                    "Texto" => " No se ha podido eliminar la imagen del reposo, intente de nuevo.",
+                    "Tipo" => "error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+        } else {
+
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR",
+                "Texto" => " No se ha podido eliminar la imagen del reposo, intente de nuevo.",
+                "Tipo" => "error"
             ];
             echo json_encode($alerta);
             exit();
         }
 
-        $borrarReposo= reposoModel::borrarReposoModel($id_rep);
-        
-        if($borrarReposo-> rowCount()==1){
-            $alerta=[
-                "Alerta"=>"recargar",
-                "Titulo"=>"Reposo Eliminado",
-                "Texto"=>"El reposo ha sido eliminado del sistema.",
-                "Tipo"=>"success"
+        // comprobando si el reposo existe en la base de datos
+
+        $revisarReposo = modeloPrincipal::ejecutarConsultaSimple("SELECT id_rep FROM reposos WHERE id_rep='$id_rep'");
+        if ($revisarReposo->rowCount() <= 0) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR",
+                "Texto" => " Ahora te sientas y me explicas mediante método científico cómo hiciste eso.",
+                "Tipo" => "error"
             ];
-        }else{
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"ERROR",
-                "Texto"=>"Ha ocurrido un error. ",
-                "Tipo"=>"error"
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $borrarReposo = reposoModel::borrarReposoModel($id_rep);
+
+        if ($borrarReposo->rowCount() == 1) {
+            $alerta = [
+                "Alerta" => "recargar",
+                "Titulo" => "Reposo Eliminado",
+                "Texto" => "El reposo ha sido eliminado del sistema.",
+                "Tipo" => "success"
             ];
-            
+        } else {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR",
+                "Texto" => "Ha ocurrido un error. ",
+                "Tipo" => "error"
+            ];
         }
 
         echo json_encode($alerta);
-
     }
 
     //Controlador para consignar un reposo
     public function consignarReposoControl()
     {
         //recibiendo el id del reposo
-        $id_rep= $_POST['consignar_rep'];
+        $id_rep = $_POST['consignar_rep'];
 
         // comprobando si el reposo existe en la base de datos
-        
-        $revisarReposo=modeloPrincipal::ejecutarConsultaSimple("SELECT id_rep FROM reposos WHERE id_rep='$id_rep'");
-        if($revisarReposo->rowCount()<=0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"ERROR",
-                "Texto"=>" Ahora te sientas y me explicas mediante método científico cómo hiciste eso.",
-                "Tipo"=>"error"
+
+        $revisarReposo = modeloPrincipal::ejecutarConsultaSimple("SELECT id_rep FROM reposos WHERE id_rep='$id_rep'");
+        if ($revisarReposo->rowCount() <= 0) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR",
+                "Texto" => " Ahora te sientas y me explicas mediante método científico cómo hiciste eso.",
+                "Tipo" => "error"
             ];
             echo json_encode($alerta);
             exit();
@@ -431,15 +490,15 @@ class reposoControl extends reposoModel
         $sumar = modeloPrincipal::ejecutarConsultaSimple("SELECT duracion FROM reposos WHERE id_rep='$id_rep'");
         $suma = $sumar->fetch();
 
-        $fechaven = date('Y-m-d', strtotime($fechacon['fecha_cert'].'+'.$suma['duracion'].'days'));
-        
-        $fechas=[
+        $fechaven = date('Y-m-d', strtotime($fechacon['fecha_cert'] . '+' . $suma['duracion'] . 'days'));
+
+        $fechas = [
             "ID" => $id_rep,
             "FechaVEN" => $fechaven
         ];
 
         $datosfecha = reposoModel::consignarReposoModelo($fechas);
-        
+
         if ($datosfecha->rowCount() == 1) {
             $alerta = [
                 "Alerta" => "recargar",
@@ -458,10 +517,9 @@ class reposoControl extends reposoModel
         echo json_encode($alerta);
     }
 
-    public function contarReposoControl(){
+    public function contarReposoControl()
+    {
 
         return reposoModel::contarReposoModel();
-
     }
 }
-

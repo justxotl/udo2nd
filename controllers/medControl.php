@@ -6,16 +6,19 @@ if ($peticionAjax) {
     require_once "./models/medModel.php";
 }
 
-class medControl extends medModel{
+class medControl extends medModel
+{
 
     //Controlador para registrar médicos
-    public function agregarMedControl(){
+    public function agregarMedControl()
+    {
 
         $nommed = $_POST['nombres_doc'];
         $apemed = $_POST['apellidos_doc'];
         $cedmed = $_POST['cedula_doc'];
+        $certmed = $_POST['certificado_doc'];
 
-        if ($nommed == "" || $apemed == "" || $cedmed == "") {
+        if ($nommed == "" || $apemed == "" || $cedmed == "" || $certmed == "") {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "Ocurrio un error inesperado",
@@ -36,7 +39,7 @@ class medControl extends medModel{
             echo json_encode($alerta);
             exit();
         }
-        
+
         if (modeloPrincipal::verificarDatos("[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,35}", $apemed)) {
             $alerta = [
                 "Alerta" => "simple",
@@ -59,6 +62,17 @@ class medControl extends medModel{
             exit();
         }
 
+        if (modeloPrincipal::verificarDatos("[0-9\-]{6,8}", $certmed)) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR",
+                "Texto" => "El certificado no coincide con el formato válido.",
+                "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
         // Comprobando la existencia de cédula
 
         $check_cedula = modeloPrincipal::ejecutarConsultaSimple("SELECT ced_med FROM medico WHERE ced_med ='$cedmed'");
@@ -73,10 +87,25 @@ class medControl extends medModel{
             exit();
         }
 
+        // Comprobando la existencia del certificado
+
+        $check_certif = modeloPrincipal::ejecutarConsultaSimple("SELECT cert_med FROM medico WHERE cert_med ='$certmed'");
+        if ($check_certif->rowCount() > 0) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR ",
+                "Texto" => "El código de certificado ya se encuentra registrado en el sistema.",
+                "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
         $registrar = [
             "Nombre" => $nommed,
             "Apellido" => $apemed,
-            "Cedula" => $cedmed
+            "Cedula" => $cedmed,
+            "Certificado" => $certmed
         ];
 
         $agg_med = medModel::agregarMedModel($registrar);
@@ -96,7 +125,6 @@ class medControl extends medModel{
             ];
         }
         echo json_encode($alerta);
-
     }
 
     //Controlador para mostrar usuarios en una tabla
@@ -121,6 +149,7 @@ class medControl extends medModel{
                 <th>Nombres</th>
                 <th>Apellidos</th>
                 <th>Cédula</th>
+                <th>Certificado</th>
                 <th>Gestión</th>
             </tr>
         </thead>
@@ -133,10 +162,11 @@ class medControl extends medModel{
                 <td>' . $rows['nom_med'] . '</td>
                 <td>' . $rows['ape_med'] . '</td>
                 <td>' . $rows['ced_med'] . '</td>
+                <td>' . $rows['cert_med'] . '</td>
                 <td class="d-flex justify-content-center">
-                <form class="  FormularioAjax" action="'.SERVERURL.'ajax/ajaxMed.php" method="POST" data-form="delete">
+                <form class="  FormularioAjax" action="' . SERVERURL . 'ajax/ajaxMed.php" method="POST" data-form="delete">
                 
-                <input type="hidden" name="borrar_id_med" value="'.$rows['id_med'].'">
+                <input type="hidden" name="borrar_id_med" value="' . $rows['id_med'] . '">
                 
                 <button type="submit" class="btn btn-sm btn-danger" title="Eliminar"><i class="fa-solid fa-trash-alt"></i></button>
                 </form>
@@ -161,53 +191,51 @@ class medControl extends medModel{
         $id = $_POST['borrar_id_med'];
 
         // comprobando si el usuario existe en la base de datos
-        
-        $revisarID=modeloPrincipal::ejecutarConsultaSimple("SELECT id_med FROM medico WHERE id_med='$id'");
-        if($revisarID->rowCount()<=0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"ERROR",
-                "Texto"=>" Ahora te sientas y me explicas con método científico cómo hiciste eso.",
-                "Tipo"=>"error"
+
+        $revisarID = modeloPrincipal::ejecutarConsultaSimple("SELECT id_med FROM medico WHERE id_med='$id'");
+        if ($revisarID->rowCount() <= 0) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR",
+                "Texto" => " Ahora te sientas y me explicas con método científico cómo hiciste eso.",
+                "Tipo" => "error"
             ];
             echo json_encode($alerta);
             exit();
         }
 
-        $borrarUsuario= medModel::borrarMedModel($id);
-        
-        if($borrarUsuario-> rowCount()==1){
-            $alerta=[
-                "Alerta"=>"recargar",
-                "Titulo"=>"Médico Eliminado",
-                "Texto"=>"Médico eliminado con éxito.",
-                "Tipo"=>"success"
+        $borrarUsuario = medModel::borrarMedModel($id);
+
+        if ($borrarUsuario->rowCount() == 1) {
+            $alerta = [
+                "Alerta" => "recargar",
+                "Titulo" => "Médico Eliminado",
+                "Texto" => "Médico eliminado con éxito.",
+                "Tipo" => "success"
             ];
-        }else{
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"ERROR",
-                "Texto"=>"Ha ocurrido un error en la eliminación.",
-                "Tipo"=>"error"
+        } else {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "ERROR",
+                "Texto" => "Ha ocurrido un error en la eliminación.",
+                "Tipo" => "error"
             ];
         }
         echo json_encode($alerta);
-
     }
 
     // Controlador selector Medico
     public static function medSelectControl()
-    {        
-        
+    {
+
         $select = modeloPrincipal::ejecutarConsultaSimple("SELECT * FROM medico ORDER BY id_med");
         return $select;
-
     }
     /* Fin de del controlador */
 
-    public function contarMedicoControl(){
+    public function contarMedicoControl()
+    {
 
         return medModel::contarMedicoModel();
-
     }
 }

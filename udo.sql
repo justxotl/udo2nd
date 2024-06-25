@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2024 at 04:06 AM
+-- Generation Time: Jun 25, 2024 at 03:13 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `udo`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fotosrep`
+--
+
+CREATE TABLE `fotosrep` (
+  `id_fot` int(11) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `id_u` varchar(255) NOT NULL,
+  `id_re` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `fotosrep`
+--
+
+INSERT INTO `fotosrep` (`id_fot`, `foto`, `id_u`, `id_re`) VALUES
+(6, '2ffc5c3f6c762ea_1.jpg', '1', 39),
+(7, '653bc924b4f99ca_3.png', '3', 40);
 
 -- --------------------------------------------------------
 
@@ -56,15 +77,17 @@ CREATE TABLE `medico` (
   `id_med` int(11) NOT NULL,
   `ced_med` varchar(255) NOT NULL,
   `nom_med` varchar(255) NOT NULL,
-  `ape_med` varchar(255) NOT NULL
+  `ape_med` varchar(255) NOT NULL,
+  `cert_med` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `medico`
 --
 
-INSERT INTO `medico` (`id_med`, `ced_med`, `nom_med`, `ape_med`) VALUES
-(5, '20212223', 'Antonio Armando', 'Contreras Frías');
+INSERT INTO `medico` (`id_med`, `ced_med`, `nom_med`, `ape_med`, `cert_med`) VALUES
+(5, '20212223', 'Antonio Armando', 'Contreras Frías', '167879'),
+(16, '58766943', 'Roberto Clemente', 'Sambrano', '236598');
 
 -- --------------------------------------------------------
 
@@ -87,7 +110,6 @@ CREATE TABLE `reposos` (
 --
 
 INSERT INTO `reposos` (`id_rep`, `duracion`, `patologia`, `fecha_cert`, `fecha_ven`, `id_user`, `id_doc`) VALUES
-(6, '15', 'ENFERMEDAD DE EJEMPLO', '2024-05-26', '2024-06-10', 1, 5),
 (9, '15', 'GRIPE', '2024-04-01', '2024-04-08', 1, 5),
 (12, '18', 'CEFALEAS EN RACIMOS', '2024-05-26', '2024-06-13', 3, 5),
 (13, '7', 'FRACTURA', '2024-05-02', '2024-05-09', 1, 5),
@@ -99,9 +121,15 @@ INSERT INTO `reposos` (`id_rep`, `duracion`, `patologia`, `fecha_cert`, `fecha_v
 (24, '8', 'FRACTURA DE TIBIA', '2024-05-16', '2024-05-24', 15, 5),
 (25, '14', 'DOLOR CERVICAL', '2024-05-30', '2024-06-13', 1, 5),
 (26, '4', 'CONJUNTIVITIS', '2024-06-01', '2024-06-05', 15, 5),
-(32, '9', 'GASTRITIS', '2024-06-21', NULL, 15, 5),
+(32, '9', 'GASTRITIS', '2024-06-21', '2024-06-30', 15, 5),
 (33, '21', 'MERECIDO DESCANSO', '2024-06-11', NULL, 1, 5),
-(34, '8', 'LUXACIÓN', '2024-06-10', '2024-06-18', 1, 5);
+(34, '8', 'LUXACIÓN', '2024-06-10', '2024-06-18', 1, 5),
+(35, '7', 'vayalo', '2024-06-05', NULL, 1, 5),
+(36, '8', 'sdfghsxdfthbxdfghn', '2024-06-01', NULL, 1, 5),
+(37, '20', 'aertygabergawrehba', '2024-06-02', NULL, 1, 5),
+(38, '7', 'dfghnsrdghsethasert', '2024-06-14', NULL, 1, 5),
+(39, '7', 'aergabshertyaehrayg', '2024-06-14', '2024-06-21', 1, 16),
+(40, '10', 'xfdghxsdfahdbfhaer', '2024-06-14', '2024-06-24', 3, 5);
 
 -- --------------------------------------------------------
 
@@ -135,6 +163,13 @@ INSERT INTO `user` (`id`, `usuario`, `pass_u`, `nivel`, `pregunta_uno`, `pregunt
 --
 
 --
+-- Indexes for table `fotosrep`
+--
+ALTER TABLE `fotosrep`
+  ADD PRIMARY KEY (`id_fot`),
+  ADD KEY `id_re` (`id_re`);
+
+--
 -- Indexes for table `info_per`
 --
 ALTER TABLE `info_per`
@@ -166,6 +201,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `fotosrep`
+--
+ALTER TABLE `fotosrep`
+  MODIFY `id_fot` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `info_per`
 --
 ALTER TABLE `info_per`
@@ -175,13 +216,13 @@ ALTER TABLE `info_per`
 -- AUTO_INCREMENT for table `medico`
 --
 ALTER TABLE `medico`
-  MODIFY `id_med` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_med` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `reposos`
 --
 ALTER TABLE `reposos`
-  MODIFY `id_rep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_rep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -192,6 +233,12 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `fotosrep`
+--
+ALTER TABLE `fotosrep`
+  ADD CONSTRAINT `fotosrep_ibfk_1` FOREIGN KEY (`id_re`) REFERENCES `reposos` (`id_rep`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `info_per`
